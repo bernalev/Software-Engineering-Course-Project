@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_181611) do
+ActiveRecord::Schema.define(version: 2019_11_07_185348) do
+
+  create_table "course_instances", force: :cascade do |t|
+    t.integer "year"
+    t.string "semester"
+    t.string "professor"
+    t.integer "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_course_instances_on_course_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "course_code"
@@ -25,10 +35,10 @@ ActiveRecord::Schema.define(version: 2019_11_07_181611) do
     t.string "title"
     t.text "body"
     t.integer "student_id", null: false
-    t.integer "course_id", null: false
+    t.integer "course_instance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_notes_on_course_id"
+    t.index ["course_instance_id"], name: "index_notes_on_course_instance_id"
     t.index ["student_id"], name: "index_notes_on_student_id"
   end
 
@@ -58,7 +68,8 @@ ActiveRecord::Schema.define(version: 2019_11_07_181611) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "course_instances", "courses"
   add_foreign_key "courses", "schools"
-  add_foreign_key "notes", "courses"
+  add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "students"
 end

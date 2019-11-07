@@ -24,9 +24,21 @@ courses = Course.create([
 	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second}
 ])
 
-Note.create(title:"my first note", body:"hello world", 
-		student: students.first, course: courses.second)
+course_instances = CourseInstance.create([
+	{year: 2015, semester: "Winter", professor: "Mark Anthony", course: courses.fourth},
+	{year: 2018, semester: "Summer", professor: "Anderson", course: courses.third},
+	{year: 2012, semester: "Fall", professor: "Bill Nye", course: courses.second},
+	{year: 2015, semester: "Winter", professor: "Garcia", course: courses.first},
+	{year: 2016, semester: "Winter", professor: "Garcia", course: courses.first}
+])
 
-
-Note.create(title:"software engineering", body:"agile>waterfall", 
-		student: students.second, course: courses.first)
+Note.create([
+	{title:"my first note", body:"hello world", 
+		student: students.first, course_instance: course_instances.second},
+	{title:"software engineering", body:"agile>waterfall", 
+		student: students.second, course_instance: course_instances.first},
+	{title:"day one", body:"it's dangerous out there", 
+		student: students.second, course_instance: course_instances.fourth},
+	{title:"introduction", body:"be careful", 
+		student: students.second, course_instance: course_instances.fifth},
+])
