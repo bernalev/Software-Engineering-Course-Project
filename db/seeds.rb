@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+schools = School.create([
+	{school_name: "University of Toronto", city: "Toronto"},
+	{school_name: "Ryerson", city: "Toronto"}
+])
 
 students = Student.create([
 	{first_name: "Alejandro", last_name: "Smith"},
@@ -14,9 +18,10 @@ students = Student.create([
 ])
 
 courses = Course.create([
-	{course_code: "ECE568", course_name: "Computer Security", school_name: "uoft"},
-	{course_code: "ECE444", course_name: "Software Eng", school_name: "u of t"},
-	{course_code: "APS112", course_name: "ESP II", school_name: "uoft"}
+	{course_code: "ECE568", course_name: "Computer Security", school: schools.first},
+	{course_code: "ECE444", course_name: "Software Eng", school: schools.first},
+	{course_code: "APS112", course_name: "ESP II", school: schools.first},
+	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second}
 ])
 
 Note.create(title:"my first note", body:"hello world", 

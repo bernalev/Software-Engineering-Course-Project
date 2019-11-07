@@ -1,13 +1,14 @@
 <h1>Hello, study buddy :)</h1>
 
 <% if user_signed_in? and current_user %>
-	Current user:
-  	<%= current_user.email %>
-  	<%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
+  Current user:
+  <%= current_user.email %>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
 
-  	<p> View <%= link_to 'students', students_path() %> </p>
-	<p> View <%= link_to 'notes', notes_path() %> </p>
-	<p> View <%= link_to 'courses', courses_path() %> </p>
+  <p> View <%= link_to 'schools', schools_path() %> </p>
+  <p> View <%= link_to 'students', students_path() %> </p>
+  <p> View <%= link_to 'notes', notes_path() %> </p>
+  <p> View <%= link_to 'courses', courses_path() %> </p>
 
 <% else %>
 	Login to view the site's content: 

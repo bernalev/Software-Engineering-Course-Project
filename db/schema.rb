@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_022432) do
+ActiveRecord::Schema.define(version: 2019_11_07_181611) do
 
   create_table "courses", force: :cascade do |t|
     t.string "course_code"
     t.string "course_name"
-    t.string "school_name"
+    t.integer "school_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["school_id"], name: "index_courses_on_school_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -29,6 +30,13 @@ ActiveRecord::Schema.define(version: 2019_11_07_022432) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_id"], name: "index_notes_on_course_id"
     t.index ["student_id"], name: "index_notes_on_student_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "school_name"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "students", force: :cascade do |t|
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_11_07_022432) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "courses", "schools"
   add_foreign_key "notes", "courses"
   add_foreign_key "notes", "students"
 end
