@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :students, :courses, :schools, :users, :notes, :course_instances
+  resources :courses, :schools, :users, :notes, :course_instances
 
   resources :course_instances do 
   	resources :notes
