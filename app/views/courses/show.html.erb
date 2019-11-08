@@ -1,0 +1,24 @@
+<h1>
+  <strong><%= @course.course_code %>: <%= @course.course_name %></strong>
+</h1>
+
+<h2>Course instances</h2>
+
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Semester</th>
+    <th>Professor</th>
+    <th>view</th>
+  </tr>
+ 
+  <% @course.course_instances.each do |instance| %>
+    <tr>
+      <td><%= instance.year %></td>
+      <td><%= instance.semester %></td>
+      <td><%= instance.professor %></td>
+      <td><%= link_to 'Show', course_instance_path(instance) %></td>
+
+    </tr>
+  <% end %>
+</table>

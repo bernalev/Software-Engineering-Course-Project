@@ -1,0 +1,23 @@
+<h1>
+  <strong><%= @school.school_name %></strong>
+</h1>
+
+<h2>Courses</h2>
+
+<table>
+  <tr>
+    <th>Course Code</th>
+    <th>Course Name</th>
+  </tr>
+ 
+  <% @school.courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_code, course_path(course) %></td>
+      <td><%= course.course_name %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+
+

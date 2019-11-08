@@ -8,7 +8,7 @@
  
   <% @schools.each do |school| %>
     <tr>
-      <td><%= school.school_name %></td>
+      <td><%= link_to school.school_name, school_path(school) %></td>
       <td><%= school.city %></td>
     </tr>
   <% end %>
