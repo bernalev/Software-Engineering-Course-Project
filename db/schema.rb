@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2019_11_07_185348) do
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "student_id", null: false
+    t.integer "user_id", null: false
     t.integer "course_instance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_instance_id"], name: "index_notes_on_course_instance_id"
-    t.index ["student_id"], name: "index_notes_on_student_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -49,14 +49,9 @@ ActiveRecord::Schema.define(version: 2019_11_07_185348) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "students", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -71,5 +66,5 @@ ActiveRecord::Schema.define(version: 2019_11_07_185348) do
   add_foreign_key "course_instances", "courses"
   add_foreign_key "courses", "schools"
   add_foreign_key "notes", "course_instances"
-  add_foreign_key "notes", "students"
+  add_foreign_key "notes", "users"
 end

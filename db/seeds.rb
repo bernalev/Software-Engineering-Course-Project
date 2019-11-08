@@ -11,10 +11,13 @@ schools = School.create([
 	{school_name: "Ryerson", city: "Toronto"}
 ])
 
-students = Student.create([
-	{first_name: "Alejandro", last_name: "Smith"},
-	{first_name: "Juan", last_name: "George"},
-	{first_name: "Maria", last_name: "Anne"}
+users = User.create([
+	{email: "test@example.com", password: "my password", password_confirmation: "my password",
+		first_name: "Alejandro", last_name: "Smith"},
+	{email: "5.22.1@hotmail.ca", password: "password", password_confirmation: "password",
+		first_name: "Eva", last_name: "Bernal"},
+	{email: "Dennis@example.com", password: "123456", password_confirmation: "123456",
+		first_name: "Dennis", last_name: "Schroder"},
 ])
 
 courses = Course.create([
@@ -34,11 +37,11 @@ course_instances = CourseInstance.create([
 
 Note.create([
 	{title:"my first note", body:"hello world", 
-		student: students.first, course_instance: course_instances.second},
+		user: users.first, course_instance: course_instances.second},
 	{title:"software engineering", body:"agile>waterfall", 
-		student: students.second, course_instance: course_instances.first},
+		user: users.second, course_instance: course_instances.third},
 	{title:"day one", body:"it's dangerous out there", 
-		student: students.second, course_instance: course_instances.fourth},
+		user: users.third, course_instance: course_instances.fourth},
 	{title:"introduction", body:"be careful", 
-		student: students.second, course_instance: course_instances.fifth},
+		user: users.first, course_instance: course_instances.fifth},
 ])
