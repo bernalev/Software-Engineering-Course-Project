@@ -11,6 +11,13 @@ class NotesController < ApplicationController
   	redirect_to course_instance_path(@course_instance)
   end
 
+  def destroy
+  	@course_instance = CourseInstance.find(params[:course_instance_id])
+  	@note = @course_instance.notes.find(params[:id])
+  	@note.destroy
+  	redirect_to course_instance_path(@course_instance)
+  end
+
 
   private
   	def note_params
