@@ -3,7 +3,7 @@
 <% if user_signed_in? and current_user %>
   Current user:
   <%= current_user.email %>
-  <%= link_to 'Edit profile', edit_user_registration_path %> |
+  <%= link_to 'View profile', user_path(current_user) %> |
   <%= link_to('Logout', destroy_user_session_path, method: :delete) %>   
 
   <p> View <%= link_to 'schools', schools_path() %> </p>
@@ -16,4 +16,3 @@
 	<%= link_to "Sign up", new_user_registration_path %> |
   	<%= link_to "Login", new_user_session_path %>
 <% end %>
-
