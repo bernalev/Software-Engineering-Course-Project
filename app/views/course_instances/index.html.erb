@@ -1,0 +1,21 @@
+<h1>All Course Instances</h1>
+
+<table>
+  <tr>
+    <th>Course Code</th>
+    <th>School Name</th>
+    <th>Year</th>
+    <th>Semester</th>
+    <th>Professor</th>
+  </tr>
+ 
+  <% @course_instances.each do |instance| %>
+    <tr>
+      <td><%= instance.course.course_code %></td>
+      <td><%= instance.course.school.school_name %></td>
+      <td><%= instance.year %></td>
+      <td><%= instance.semester %></td>
+      <td><%= instance.professor %></td>
+    </tr>
+  <% end %>
+</table>

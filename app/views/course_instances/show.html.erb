@@ -1,0 +1,42 @@
+<h1>
+  <strong><%= @course_instance.course.school.school_name %></strong>
+</h1>
+
+<h2>
+  <strong><%= @course_instance.course.course_code %>: <%= @course_instance.course.course_name %></strong> - <%= @course_instance.year %> <%= @course_instance.semester %>
+</h2>
+
+
+<h3>Notes</h3>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Created By</th>
+  </tr>
+ 
+  <% @course_instance.notes.each do |note| %>
+    <tr>
+      <td><%= note.title %></td>
+      <td><%= note.body %></td>
+      <td><%= "#{note.user.first_name} #{note.user.last_name}" %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<h3>Add a note</h3>
+  <%= form_with(model: [ @course_instance, @course_instance.notes.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>

@@ -1,8 +1,12 @@
 <h1>
-  <strong><%= @course.course_code %>: <%= @course.course_name %></strong>
+  <strong><%= @course.school.school_name %></strong>
 </h1>
 
-<h2>Course instances</h2>
+<h2>
+  <strong><%= @course.course_code %>: <%= @course.course_name %></strong>
+</h2>
+
+<h3>Course instances</h2>
 
 <table>
   <tr>
