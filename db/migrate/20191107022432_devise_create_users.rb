@@ -6,6 +6,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :first_name
       t.string :last_name
 
+      # for omniauth
+      t.string :provider
+      t.string :uid
+
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

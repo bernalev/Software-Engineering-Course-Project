@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 # for user authentication
 gem 'devise'
+# for user authentication with stated provider
+gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -14,7 +14,7 @@ schools = School.create([
 users = User.create([
 	{email: "test@example.com", password: "my password", password_confirmation: "my password",
 		first_name: "Alejandro", last_name: "Smith"},
-	{email: "5.22.1@hotmail.ca", password: "password", password_confirmation: "password",
+	{email: "23@hotmail.ca", password: "password", password_confirmation: "password",
 		first_name: "Eva", last_name: "Bernal"},
 	{email: "Dennis@example.com", password: "123456", password_confirmation: "123456",
 		first_name: "Dennis", last_name: "Schroder"},
