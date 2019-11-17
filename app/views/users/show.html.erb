@@ -18,3 +18,18 @@
 <%= link_to 'Edit profile', edit_user_path %>
 <br>
 <%= link_to 'Change email or password', edit_user_registration_path %>
+
+<h2> Courses </h2>
+
+<table>
+  <tr>
+    <th>Course Code</th>
+    <th>School</th>
+  </tr>
+  <% @user.courses.each do |course| %>
+    <tr>
+      <td><%= link_to course.course_code, course_path(course) %></td>
+      <td><%= course.school.school_name %></td>
+    </tr>
+  <% end %>
+</table>
