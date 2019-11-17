@@ -27,12 +27,6 @@
   </p>
  
   <p>
-    Schools
-
-    <%= select_tag("course_ids[]", options_for_select(Course.find(:all).collect { |crs| [crs.course_name, course.id] }, @user.courses.collect { |crs| crs.id}), {:multiple=>true})%>
-  </p>
-
-  <p>
     <%= form.submit %>
   </p>
  
