@@ -30,7 +30,7 @@
     <tr>
       <td><%= link_to course.course_code, course_path(course) %></td>
       <td><%= course.school.school_name %></td>
-      <td><%= link_to "Remove Course" %> (coming soon) </td>
+      <td><%= link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%> </td>
     </tr>
   <% end %>
 </table>
