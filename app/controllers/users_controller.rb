@@ -13,11 +13,20 @@ class UsersController < ApplicationController
 
   def update
 	  @user = User.find(params[:id])
-	
-	  if @user.update(user_params)
-	    redirect_to @user
-  	else
-	    render 'edit'
+    
+    if (params[:course_id])
+      course = Course.find(params[:course_id])
+
+      @user.courses << course
+      @user.save
+	  
+    else  
+	   if @user.update(user_params)
+	      redirect_to @user
+  	 else
+	      render 'edit'
+     end
+    
     end
   end
 
