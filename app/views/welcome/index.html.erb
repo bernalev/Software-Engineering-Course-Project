@@ -2,19 +2,24 @@
 
 <% if user_signed_in? and current_user %>
   <h2>My Courses</h2>
-  <table>
-  <tr>
-    <th>Course Code</th>
-    <th>School</th>
-  </tr>
-  <% current_user.courses.each do |course| %>
-    <tr>
-      <td><%= link_to course.course_code, course_path(course) %></td>
-      <td><%= course.school.school_name %></td>
-      <td><%= link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%> </td>
-    </tr>
+
+  <% if (current_user.courses.size == 0) %>
+  	No courses!
+  <% else %>
+    <table>
+      <tr>
+        <th>Course Code</th>
+        <th>School</th>
+      </tr>
+      <% current_user.courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.course_code, course_path(course) %></td>
+          <td><%= course.school.school_name %></td>
+          <td><%= link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%> </td>
+        </tr>
+      <% end %>
+    </table>
   <% end %>
-  </table>
 
   <p> <%= link_to 'Add courses', schools_path() %> </p>
 

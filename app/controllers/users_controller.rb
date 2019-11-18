@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
       @user.courses.delete(course)
       @user.save
-      render 'show'
+      render "welcome/index"
     else  
 	    if @user.update(user_params)
 	      redirect_to @user
