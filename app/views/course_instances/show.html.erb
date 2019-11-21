@@ -14,6 +14,8 @@
     <th>Title</th>
     <th>Body</th>
     <th>Created By</th>
+    <th>View Note</th>
+    <th>Delete</th>
   </tr>
  
   <% @course_instance.notes.each do |note| %>
@@ -21,6 +23,11 @@
       <td><%= note.title %></td>
       <td><%= note.body %></td>
       <td><%= "#{note.user.first_name} #{note.user.last_name}" %></td>
+      <td>
+        <% if note.file.attached? %>
+          <%= link_to "View file attached", [note.course_instance, note], action: "show" %>
+        <%end%>
+      </td>
       <% if note.user.id == current_user.id%>
         <td><%= link_to "Delete Note", [note.course_instance, note], 
                         method: :delete, 
@@ -41,6 +48,10 @@
       <%= form.label :body %><br>
       <%= form.text_area :body %>
     </p>
+    <p>
+      <%= form.file_field :file %>
+    </p>
+
     <p>
       <%= form.submit %>
     </p>

@@ -1,0 +1,7 @@
+<h1><%= @course_instance.course.course_code %></h1>
+
+<h1><%= @note.title %> </h1>
+
+<iframe width = "90%" height= "700" src= <%= rails_blob_path(@note.file, disposition: "file") %>></iframe>
+
+<p><%= link_to "return", course_instance_path(@course_instance) %></p>
