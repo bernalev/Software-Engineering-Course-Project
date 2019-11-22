@@ -40,7 +40,11 @@ class UsersController < ApplicationController
       render "welcome/index"
     else  
 	    if @user.update(user_params)
-	      redirect_to @user
+        if current_user.sign_in_count == 1 
+          redirect_to root_path
+        else
+	       redirect_to @user
+        end
   	  else
 	      render 'edit'
       end
