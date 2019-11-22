@@ -21,10 +21,10 @@ users = User.create([
 ])
 
 courses = Course.create([
-	{course_code: "ECE568", course_name: "Computer Security", school: schools.first},
-	{course_code: "ECE444", course_name: "Software Eng", school: schools.first},
-	{course_code: "APS112", course_name: "ESP II", school: schools.first},
-	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second}
+	{course_code: "ECE568", course_name: "Computer Security", school: schools.first, department: "Computer Engineering"},
+	{course_code: "ECE444", course_name: "Software Eng", school: schools.first, department: "Computer Engineering"},
+	{course_code: "APS112", course_name: "ESP II", school: schools.first, department: "Mechanical Engineering"},
+	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second, department: "Arts and Science"}
 ])
 
 users.first.courses << courses.first
