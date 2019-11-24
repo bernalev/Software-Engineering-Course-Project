@@ -6,11 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-schools = School.create([
-	{school_name: "University of Toronto", city: "Toronto"},
-	{school_name: "Ryerson", city: "Toronto"},
-	{school_name: "University of British Colombia", city: "Vancouver"},
-])
+num_schools = 15
+#num_users = 15
+#num_courses = 15
+
+schools_array = Array.new(num_schools)
+for i in 0..schools_array.length
+	schools_array[i] = {school_name: Faker::Educator.university, city: Faker::Educator.campus}
+end
+schools = School.create(schools_array)
+
+=begin
+# TODO name should match email, how do
+users_array = Array.new(num_users)
+for i in 0..users_array.length
+	#f_name = Faker::Name.first_name 
+	#l_name = Faker::Name.last_name
+	#pass = Faker::Alphanumeric.alphanumeric(number: 8, min_alpha: 3, min_numeric: 3)
+	users_array[i] = {email: Faker::Internet.email(name: Faker::Name.name, separators: %w(+ . _ -)), 
+		password: "my password", password_confirmation: "my password",
+		first_name: Faker::Name.first_name, last_name: Faker::Name.last_name}
+end
+users = User.create(users_array)
+=end
 
 users = User.create([
 	{email: "test@example.com", password: "my password", password_confirmation: "my password",
@@ -20,6 +38,18 @@ users = User.create([
 	{email: "Dennis@example.com", password: "123456", password_confirmation: "123456",
 		first_name: "Dennis", last_name: "Schroder"}
 ])
+
+=begin 
+# course_code not a given attribute of Faker::Educator
+# maybe get from actual uni site
+courses_array = Array.new(num_courses)
+for i in 0..courses_array.length
+	courses_array[i] = {}
+end
+
+courses = School.create(courses_array)
+=end
+
 
 courses = Course.create([
 	{course_code: "ECE568", course_name: "Computer Security", school: schools.first, department: "Computer Engineering"},

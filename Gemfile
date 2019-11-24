@@ -31,6 +31,9 @@ gem 'omniauth-google-oauth2'
 # for setting environment variables
 gem 'figaro'
 
+# fake data generation
+gem 'faker'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
