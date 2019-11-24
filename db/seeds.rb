@@ -8,7 +8,8 @@
 
 schools = School.create([
 	{school_name: "University of Toronto", city: "Toronto"},
-	{school_name: "Ryerson", city: "Toronto"}
+	{school_name: "Ryerson", city: "Toronto"},
+	{school_name: "University of British Colombia", city: "Vancouver"},
 ])
 
 users = User.create([
@@ -24,7 +25,9 @@ courses = Course.create([
 	{course_code: "ECE568", course_name: "Computer Security", school: schools.first, department: "Computer Engineering"},
 	{course_code: "ECE444", course_name: "Software Eng", school: schools.first, department: "Computer Engineering"},
 	{course_code: "APS112", course_name: "ESP II", school: schools.first, department: "Mechanical Engineering"},
-	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second, department: "Arts and Science"}
+	{course_code: "GEO108", course_name: "Geographis of Everyday Life", school: schools.second, department: "Arts and Science"},
+	{course_code: "ECON 101", course_name: "Principles of Microeconomics", school: schools.third, department: "Economics"},
+
 ])
 
 users.first.courses << courses.first

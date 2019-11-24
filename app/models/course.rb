@@ -8,7 +8,8 @@ class Course < ApplicationRecord
 		"Electrical Engineering",
 		"Mechanical Engineering",
 		"Computer Science",
-		"Arts and Science"
+		"Arts and Science",
+		"Economics"
 	]
 	validates :department, inclusion: {in: DEPTS}
 end

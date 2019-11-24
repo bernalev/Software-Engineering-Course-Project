@@ -5,11 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
+      t.boolean :admin, default: false
 
       # for omniauth
       t.string :provider
       t.string :uid
-
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
