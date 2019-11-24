@@ -1,0 +1,2 @@
+class TutorAd < ApplicationRecord
+end

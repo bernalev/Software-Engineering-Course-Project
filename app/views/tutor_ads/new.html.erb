@@ -1,0 +1,21 @@
+<h1>Post New Tutor Ad</h1>
+  <%= form_with scope: :tutor_ad, url: tutor_ads_path, local: true do |form| %>
+	  <p>
+  		<%= form.label :title, 'Title Of Your Ad' %>
+ 	  	<%= form.text_field :title %>
+	  </P>
+	  <p>
+	  	<%= form.label :offering, 'Offering/Wanted' %>
+		<%= form.text_field :offering %>
+	  </p>
+	  <p>
+	  	<%= form.label :description, 'Short Description' %>
+		<%= form.text_area :description %>
+	  </p>
+	  <p>
+	  	<%= form.label :rate, 'Cost (Hourly)' %>
+		<%= form.number_field :rate , step: 0.01%>
+	  </p>
+	  <p><%= form.submit 'Post' %></p>
+  <% end %>
+
