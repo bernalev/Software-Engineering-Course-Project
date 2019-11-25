@@ -5,6 +5,7 @@
   Current user:
   <%= current_user.first_name %>
   <%= link_to 'View profile', user_path(current_user) %> |
+  <%= link_to('View Ads', tutor_ads_path) %> |
   <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
 
   <% else %>
