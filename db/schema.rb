@@ -77,12 +77,14 @@ ActiveRecord::Schema.define(version: 2019_11_24_215716) do
   end
 
   create_table "tutor_ads", force: :cascade do |t|
+    t.integer "user_id"
     t.string "title"
     t.string "offering"
     t.text "description"
     t.float "rate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tutor_ads_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,4 +114,5 @@ ActiveRecord::Schema.define(version: 2019_11_24_215716) do
   add_foreign_key "courses", "schools"
   add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "users"
+  add_foreign_key "tutor_ads", "users"
 end
