@@ -32,3 +32,11 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+
+amazon:
+  service: S3
+  access_key_id: ENV["S3_ACCESS_KEY"]
+  secret_access_key: ENV["S3_SECRET_ACCESS_KEY"]
+  region: ca-central-1
+  bucket: studybuddy2019
