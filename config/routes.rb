@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :courses, :schools, :users, :notes, :course_instances, :groups
 
+  resources :courses, :schools, :users, :notes, :course_instances, :tutor_ads, :groups
   resources :course_instances do 
   	resources :notes
   end

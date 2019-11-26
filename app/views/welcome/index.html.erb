@@ -1,5 +1,22 @@
-<h1>Hello, study buddy :)</h1>
-
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-lg-7 my-auto">
+        <div class="header-content mx-auto">
+          
+          <% if !user_signed_in? %>
+          <h1>Welcome to study buddy :)</h1>
+            Login to view the site's content: 
+            <%= link_to "Sign up", new_user_registration_path %> |
+            <%= link_to "Login", new_user_session_path %>
+          <% else %>
+          <h1>Hello, study buddy :)</h1>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <% if user_signed_in? and current_user %>
   <h2>My Courses</h2>
 
@@ -31,9 +48,9 @@
   <p> View <%= link_to 'notes', notes_path() %> </p>
   <p> View <%= link_to 'courses', courses_path() %> </p>
   <p> View <%= link_to 'groups', groups_path() %> </p>
-
-<% else %>
-	Login to view the site's content: 
-	<%= link_to "Sign up", new_user_registration_path %> |
-  	<%= link_to "Login", new_user_session_path %>
-<% end %>
+  <p> View <%= link_to 'tutor ads', tutor_ads_path() %></p>
+  <% else %>
+  <p> View <%= link_to 'schools', schools_path() %> </p>
+  <p> View <%= link_to 'schools', schools_path() %> </p>
+  <p> View <%= link_to 'schools', schools_path() %> </p>
+  <% end %>

@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_24_190432) do
-
-  create_table "TutorAds", force: :cascade do |t|
-    t.string "title"
-    t.string "type"
-    t.text "body"
-    t.float "rate"
-    t.integer "user_id", null: false
-    t.index ["user_id"], name: "index_TutorAds_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2019_11_24_215716) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,9 +82,21 @@ ActiveRecord::Schema.define(version: 2019_11_24_190432) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tutor_ads", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "offering"
+    t.text "description"
+    t.float "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tutor_ads_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.boolean "admin", default: false
     t.string "provider"
     t.string "uid"
     t.string "email", default: "", null: false
@@ -112,10 +115,10 @@ ActiveRecord::Schema.define(version: 2019_11_24_190432) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "TutorAds", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "course_instances", "courses"
   add_foreign_key "courses", "schools"
   add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "users"
+  add_foreign_key "tutor_ads", "users"
 end

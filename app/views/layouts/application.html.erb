@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
     <title>Studybuddy7</title>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://blackrockdigital.github.io/startbootstrap-new-age/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://blackrockdigital.github.io/startbootstrap-new-age/vendor/simple-line-icons/css/simple-line-icons.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  <link rel="stylesheet" href="https://blackrockdigital.github.io/startbootstrap-new-age/device-mockups/device-mockups.min.css">
+
+  <link href="https://blackrockdigital.github.io/startbootstrap-new-age/css/new-age.min.css" rel="stylesheet">
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render "layouts/header" %>
+  <body id="page-top">
+  <%= render "layouts/header" %>
     <%= yield %>
-    <%= render "layouts/footer" %>
+  <%= render "layouts/footer" %>
   </body>
 </html>
