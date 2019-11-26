@@ -19,6 +19,9 @@
   <% end %>
 </table>
 
+<% if @msg != "" %>
+  <p><strong><%= @msg %></strong></p>
+<% end %>
 
-
+<%= link_to "Return to My Course List", welcome_index_path() %>
 

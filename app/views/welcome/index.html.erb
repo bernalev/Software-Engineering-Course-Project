@@ -21,6 +21,10 @@
     </table>
   <% end %>
 
+  <% if @msg != "" %>
+    <p><strong> <%= @msg %> </strong></p>
+  <% end %>
+
   <p> <%= link_to 'Add courses', schools_path() %> </p>
 
   <br>
