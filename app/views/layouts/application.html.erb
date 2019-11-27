@@ -7,6 +7,7 @@
   <meta name="author" content="">
     <title>Studybuddy7</title>
     <%= csrf_meta_tags %>
+    <link href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://blackrockdigital.github.io/startbootstrap-new-age/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://blackrockdigital.github.io/startbootstrap-new-age/vendor/simple-line-icons/css/simple-line-icons.css">
@@ -21,8 +22,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body id="page-top">
+  <body id="page-top" style="padding-top: 60px;">
   <%= render "layouts/header" %>
     <%= yield %>
   <%= render "layouts/footer" %>

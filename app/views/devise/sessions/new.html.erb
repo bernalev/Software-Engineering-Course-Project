@@ -2,13 +2,14 @@
   <div class="container h-100">
     <div class="row h-100 align-items-center ">
       <div class="col my-auto ">
-        <div class="header-content mx-auto ">
-          <div class="card">
+        <div class="header-content mx-auto">
+          <div class="card text-center" style="width: 35rem;">
           <article class="card-body">
-          <h4 class="card-title text-center mb-4 mt-1 text-dark" font color="black">Log in</h4>
+            <a href ="/users/sign_up" class ="float-right btn btn-outline-primary">Sign Up</a>
+          <h4 class="card-title mb-4 mt-1 text-dark float-left" font color="black">Log in</h4>
           <hr>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field text-dark">
+            <div class="form-group text-dark">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             </div>
@@ -29,8 +30,9 @@
               <%= f.submit "Log in" %>
             </div>
           <% end %>
-
+          <div id="ExternalAuth">
           <%= render "devise/shared/links" %>
+        </div>
         </article>
         </div>
         </div>
@@ -38,3 +40,28 @@
     </div>
   </div>
 </header>
+
+<script>
+  childList = (document.getElementById("ExternalAuth").children);
+  for (child in childList) {
+    innerElement = (document.getElementById("ExternalAuth").children[child]);
+    if (innerElement.tagName == 'A') {
+      if (innerElement.innerHTML == "Sign in with Facebook") {
+        innerElement.className = "btn btn-block btn-outline-primary"
+        innerElement.innerHTML = "Login with facebook"
+        innerFrame = document.createElement("i")
+        innerFrame.className = "fab fa-facebook-f"
+        innerElement.appendChild(innerFrame)
+        
+      }
+      else if(innerElement.innerHTML == "Sign in with GoogleOauth2") {
+        innerElement.className = "btn btn-block btn-outline-info"
+        innerElement.innerHTML = "Login with google"
+        innerFrame = document.createElement("i")
+        innerFrame.className = "fab fa-google mr-2"
+        innerElement.appendChild(innerFrame)
+      }
+    }
+  }
+
+</script>
