@@ -3,7 +3,7 @@ class TutorAdsController < ApplicationController
   end
   def create
 	  @tutor_ad = TutorAd.new(tutor_ad_params)
-
+          @tutor_ad.user=User.find_by(id:current_user.id)
 	  @tutor_ad.save
 	  redirect_to @tutor_ad
   end
