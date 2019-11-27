@@ -13,9 +13,12 @@ class TutorAdsController < ApplicationController
   end
 
   def index
-	  @tutor_ads = TutorAd.all
-  end
-
+	  if params[:query].present?
+		  @tutor_ads = TutorAd.search(params[:query])
+	  else 
+	  	  @tutor_ads = TutorAd.all 
+	  end
+  end 
   def show
 	  @tutor_ad= TutorAd.find(params[:id])
   end

@@ -30,6 +30,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'bootstrap-sass'
 
+gem 'pg_search'
+
 # for setting environment variables
 gem 'figaro'
 
