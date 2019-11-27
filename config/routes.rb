@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  get 'sites/privacy_policy'
+  get 'sites/terms_of_service'
+  get 'sites/faq'
 
   resources :courses, :schools, :users, :notes, :course_instances, :tutor_ads, :groups
   resources :course_instances do 
