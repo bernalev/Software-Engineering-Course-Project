@@ -60,8 +60,10 @@ ActiveRecord::Schema.define(version: 2019_11_24_215716) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
+    t.integer "course_instance_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_instance_id"], name: "index_groups_on_course_instance_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -118,6 +120,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_215716) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "course_instances", "courses"
   add_foreign_key "courses", "schools"
+  add_foreign_key "groups", "course_instances"
   add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "users"
   add_foreign_key "tutor_ads", "users"
