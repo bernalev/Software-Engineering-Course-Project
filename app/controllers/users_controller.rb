@@ -30,13 +30,22 @@ class UsersController < ApplicationController
     if (params[:add_course])
       course = Course.find(params[:add_course])
 
-      @user.courses << course
-      @user.save
+      if !@user.courses.include?(course)
+        @user.courses << course
+        @user.save
+        @msg = "Course successfully added!"
+      else 
+        @msg = "Course already on your list!"
+      end
+
+      @school = course.school
+      render "schools/show"
 	  elsif (params[:rm_course])
       course = Course.find(params[:rm_course])
 
       @user.courses.delete(course)
       @user.save
+      @msg = "Course deleted!"
       render "welcome/index"
     else  
 	    if @user.update(user_params)

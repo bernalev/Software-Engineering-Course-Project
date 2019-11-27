@@ -9,6 +9,11 @@
 
 <h3>Notes</h3>
 
+<% if @course_instance.notes.empty? %>
+  <p>There is no notes yet. Be the first to contribute to the course :)</p>
+
+<% else %>
+
 <table>
   <tr>
     <th>Title</th>
@@ -29,12 +34,13 @@
   <% end %>
 </table>
 
+<% end %>
 
 <h3>Add a note</h3>
   <%= form_with(model: [ @course_instance, @course_instance.notes.build ], local: true) do |form| %>
     <p>
       <%= form.label :title %><br>
-      <%= form.text_field :title %>
+      <%= form.text_field :title, :required => true%>
     </p>
     <p>
       <%= form.label :body %><br>
