@@ -11,6 +11,7 @@ num_users = 15
 num_courses = 30
 num_notes = 120
 num_course_instances = 60
+num_groups = 10
 
 schools_array = Array.new(num_schools)
 for i in 0..schools_array.length
@@ -60,6 +61,15 @@ for i in 0..course_instances_array.length
 end
 course_instances = CourseInstance.create(course_instances_array)
 
+#every course instance has a group associated
+groups_array = Array.new(num_groups)
+for i in 0..groups_array.length
+	groups_array[i] = {
+		name: Faker::Name.name,
+		course_instance: course_instances[Faker::Number.between(from: 0, to: num_course_instances-1)]
+	}
+end
+groups = Group.create(groups_array)
 
 notes_array = Array.new(num_notes)
 for i in 0..notes_array.length
