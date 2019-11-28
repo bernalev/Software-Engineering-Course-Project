@@ -1,23 +1,22 @@
-<header class="masthead">
-  <div class="container h-100">
-    <div class="row h-100">
-      <div class="col-lg-7 my-auto">
-        <div class="header-content mx-auto">
-          
-          <% if !user_signed_in? %>
-          <h1>Welcome to study buddy :)</h1>
-            Login to view the site's content: 
-            <%= link_to "Sign up", new_user_registration_path %> |
-            <%= link_to "Login", new_user_session_path %>
-          <% else %>
-          <h1>Hello, study buddy :)</h1>
-          <% end %>
+<% if !user_signed_in? %>
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            
+            <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1>
+              Login for access to notes, tutors and studdy groups for your courses: 
+              <%= link_to "Sign up", new_user_registration_path %> |
+              <%= link_to "Login", new_user_session_path %>
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
-<% if user_signed_in? and current_user %>
+  </header>
+<% else %>
+
   <h2>My Courses</h2>
 
   <% if (current_user.courses.size == 0) %>
@@ -47,14 +46,32 @@
   <br>
   <hr>
   for debugging:
-  <p> View <%= link_to 'schools', schools_path() %> </p>
-  <p> View <%= link_to 'users', users_path() %> </p>
-  <p> View <%= link_to 'notes', notes_path() %> </p>
-  <p> View <%= link_to 'courses', courses_path() %> </p>
-  <p> View <%= link_to 'groups', groups_path() %> </p>
-  <p> View <%= link_to 'tutor ads', tutor_ads_path() %></p>
-  <% else %>
-  <p> View <%= link_to 'schools', schools_path() %> </p>
-  <p> View <%= link_to 'schools', schools_path() %> </p>
-  <p> View <%= link_to 'schools', schools_path() %> </p>
-  <% end %>
+    <p> View <%= link_to 'schools', schools_path() %> </p>
+    <p> View <%= link_to 'users', users_path() %> </p>
+    <p> View <%= link_to 'notes', notes_path() %> </p>
+    <p> View <%= link_to 'courses', courses_path() %> </p>
+    <p> View <%= link_to 'groups', groups_path() %> </p>
+    <p> View <%= link_to 'tutor ads', tutor_ads_path() %></p>
+
+<% end %>
+
+
+
+<h2> Browse by School </h2>
+
+<% @schools.each do |skule| %>
+  <div> <%= link_to skule.school_name, school_path(skule) %></div> 
+  <% source = "http://lorempixel.com/400/200/city/#{Faker::Number.between(from: 0, to: 10)}" %>
+  <%= image_tag(source, :alt=>"rss feed") %>       
+<% end %>
+
+
+<h2> Coming soon: Browse by Subject </h2>
+
+<% Course.DEPTS.each do |department| %>
+  <div> <%= department %></div>        
+        
+<% end %>
+
+Coming soon: browse recent notes from your courses
+
