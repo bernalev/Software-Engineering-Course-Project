@@ -3,5 +3,9 @@ class WelcomeController < ApplicationController
 
   def index
   	@schools = School.all
+  	@schools_count = @schools.length
+  	if (@schools_count > 11)
+  		@schools = @schools[0..10]
+  	end
   end
 end
