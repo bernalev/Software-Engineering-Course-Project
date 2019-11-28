@@ -30,13 +30,8 @@ class UsersController < ApplicationController
     if (params[:add_course])
       course = Course.find(params[:add_course])
 
-      if !@user.courses.include?(course)
-        @user.courses << course
-        @user.save
-        @msg = "Course successfully added!"
-      else 
-        @msg = "Course already on your list!"
-      end
+      @user.courses << course
+      @user.save
 
       @school = course.school
       render "schools/show"
@@ -45,8 +40,7 @@ class UsersController < ApplicationController
 
       @user.courses.delete(course)
       @user.save
-      @msg = "Course deleted!"
-      render "welcome/index"
+      redirect_to root_path
     else  
 	    if @user.update(user_params)
         if current_user.sign_in_count == 1 
