@@ -1,29 +1,73 @@
-<h2>Sign up</h2>
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center ">
+      <div class="col my-auto ">
+        <div class="header-content mx-auto">
+          <div class="card text-center" style="width: 35rem;">
+          <article class="card-body">
+            <a href ="/users/sign_in" class ="float-right btn btn-outline-primary">Log in</a>
+          <h4 class="card-title mb-4 mt-1 text-dark float-left" font color="black">Sign Up</h4>
+          <hr/>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <div class="field form-group text-dark">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field form-group text-dark">
+              <%= f.label :password %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field form-group text-dark">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+
+            <div class="actions form-group text-dark">
+              <%= f.submit "Sign up" %>
+            </div>
+          <% end %>
+          <div id="ExternalAuth">
+          <%= render "devise/shared/links" %>
+        </div>
+          </div>
+        </article>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
+</header>
+<script>
+  childList = (document.getElementById("ExternalAuth").children);
+  for (child in childList) {
+    innerElement = (document.getElementById("ExternalAuth").children[child]);
+    if (innerElement.tagName == 'A') {
+      if (innerElement.innerHTML == "Sign in with Facebook") {
+        innerElement.className = "btn btn-facebook "
+        innerElement.id = "facebook-Auth"
+        innerElement.innerHTML = "Login with facebook"
+        innerFrame = document.createElement("i")
+        innerFrame.className = "fab fa-facebook-f"
+        innerElement.appendChild(innerFrame)
+        
+      }
+      else if(innerElement.innerHTML == "Sign in with GoogleOauth2") {
+        innerElement.className = "btn btn-google "
+        innerElement.id = "google-Auth"
+        innerElement.innerHTML = "Login with google"
+        innerFrame = document.createElement("i")
+        innerFrame.className = "fab fa-google mr-2"
+        innerElement.appendChild(innerFrame)
+      }
+    }
+  }
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</script>

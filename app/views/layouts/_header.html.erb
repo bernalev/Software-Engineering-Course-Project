@@ -1,38 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top"style="line-height: 50px;">
-  <div class = "container"> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="line-height: 50px;">
+  <div class = "container "> 
   <a class="navbar-brand " href="/">StudyBuddy</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto w-100 justify-content-end">
+    <ul class="navbar-nav mr-auto w-100 justify-content-end nav-hover">
           <% if user_signed_in? and current_user %>
           <li>
-            <p class = "nav-link js-scroll-trigger">Current user:<%= current_user.first_name %></p>
+            <p class = "nav-link js-scroll-trigger" style="margin: 0; padding-top:11px; padding-right:10px";><%= current_user.first_name %></p>
             <li>
           <li class="nav-item">
-            <%= link_to 'View profile |', user_path(current_user),
+            <%= link_to 'View profile ', user_path(current_user),
             { :class=>"nav-link js-scroll-trigger" } %>
           </li>
           <li class="nav-item">
-            <%= link_to 'View Ads |', tutor_ads_path,
+            <%= link_to 'View Ads ', tutor_ads_path,
             { :class=>"nav-link js-scroll-trigger" } %>
           </li>
           <li class="nav-item">
-            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+            <%= link_to(' Logout', destroy_user_session_path, method: :delete) %>
           </li>
+          </ul>
+          <form class="navbar-form navbar-left" action="/action_page.php">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" style="margin-top: 0px; padding-top: 0px;";>
+              </div>
+              <button type="submit" class="btn btn-sm btn-light">Submit</button>
+          </form>
           <% else %>
           <li class="nav-item">
-            <%= link_to "Sign up |", new_user_registration_path,
+            <%= link_to "Sign up ", new_user_registration_path,
             { :class=>"nav-link js-scroll-trigger" } %> 
           </li>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path,
             { :class=>"nav-link js-scroll-trigger" } %>
           </li>
+      </ul>
           <% end %>
-    </ul>
+    
+
   </div>
 </div>
 </nav>
