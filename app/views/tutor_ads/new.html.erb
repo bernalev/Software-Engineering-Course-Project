@@ -5,8 +5,9 @@
  	  	<%= form.text_field :title %>
 	  </P>
 	  <p>
-	  	<%= form.label :offering, 'Offering/Wanted' %>
-		<%= form.text_field :offering %>
+	  	<%= form.label :ad_type, 'Type of Ad' %>
+		<%= form.radio_button :ad_type, :offering %> Offering
+		<%= form.radio_button :ad_type, :wanted %> Wanted
 	  </p>
 	  <p>
 	  	<%= form.label :description, 'Short Description' %>

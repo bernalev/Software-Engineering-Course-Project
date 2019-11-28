@@ -9,15 +9,18 @@
 		<th>Title</th>
 		<th>Offering/Wanted</th>
 		<th>Description</th>
-		<th>Rate</th>
+		<th>Hourly Rate</th>
 		<th></th>
 	</tr>
 	<% @tutor_ads.each do |tutor_ad| %>
 		<tr>
 			<td><%= tutor_ad.title %></td>
-			<td><%= tutor_ad.offering %></td>
+			<td><%= tutor_ad.ad_type %></td>
 			<td><%= tutor_ad.description %></td>
 			<td><%= tutor_ad.rate %></td>
+			<td><%= link_to "View", tutor_ad_path(tutor_ad) %></td>
 		</tr>
 	<%end%>
 </table>
+
+<%= link_to "Post to tutoring ads", new_tutor_ad_path %>
