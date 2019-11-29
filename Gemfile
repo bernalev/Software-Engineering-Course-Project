@@ -31,6 +31,7 @@ gem 'omniauth-google-oauth2'
 gem 'bootstrap-sass'
 
 gem 'pg_search'
+gem 'public_activity'
 
 # for setting environment variables
 gem 'figaro'

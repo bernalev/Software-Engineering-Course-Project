@@ -20,5 +20,6 @@ class WelcomeController < ApplicationController
 <% end %>
 	
 =end
+  	@activities = PublicActivity::Activity.order("created_at desc").limit(7)
   end
 end

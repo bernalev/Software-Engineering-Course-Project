@@ -16,7 +16,12 @@
     </div>
   </header>
 <% else %>
-
+  <h2>Recent Notes</h2>
+  <% @activities.each do |activity| %>
+  	<div>
+		<%= render_activity activity %>
+  	</div>
+  <%end%>
   <h2>My Courses</h2>
 
   <% if (current_user.courses.size == 0) %>
