@@ -13,15 +13,19 @@ class NotesController < ApplicationController
   end
 
   def destroy
-  	@course_instance = CourseInstance.find(params[:course_instance_id])
-  	@note = @course_instance.notes.find(params[:id])
+    @note = Note.find(params[:id])
+  	#@course_instance = CourseInstance.find(params[:course_instance_id])
+  	#@note = @course_instance.notes.find(params[:id])
+    @course_instance = @note.course_instance
   	@note.destroy
   	redirect_to course_instance_path(@course_instance)
   end
 
   def show
-    @course_instance = CourseInstance.find(params[:course_instance_id])
-    @note = @course_instance.notes.find(params[:id])
+    @note = Note.find(params[:id])
+    #@course_instance = CourseInstance.find(params[:course_instance_id])
+    #@note = @course_instance.notes.find(params[:id])
+    @course_instance = @note.course_instance
   end
 
 
