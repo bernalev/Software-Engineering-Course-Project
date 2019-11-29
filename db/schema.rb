@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
   create_table "tutor_ads", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
-    t.string "offering"
+    t.integer "ad_type"
     t.text "description"
     t.float "rate"
     t.datetime "created_at", precision: 6, null: false
