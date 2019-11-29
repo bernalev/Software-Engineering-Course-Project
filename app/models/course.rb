@@ -8,4 +8,8 @@ class Course < ApplicationRecord
 		'Criminology', 'Design', 'Engineering', 'Forensic Science', 'Health Science', 'Information Systems', 
 		'Computer Science', 'Law', 'Nursing', 'Medicine', 'Psychology', 'Teaching']
 	validates :department, inclusion: {in: DEPTS}
+
+	def self.DEPTS
+		DEPTS
+	end
 end

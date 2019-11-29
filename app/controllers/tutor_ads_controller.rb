@@ -3,7 +3,7 @@ class TutorAdsController < ApplicationController
   end
   def create
 	  @tutor_ad = TutorAd.new(tutor_ad_params)
-
+          @tutor_ad.user=User.find_by(id:current_user.id)
 	  @tutor_ad.save
 	  redirect_to @tutor_ad
   end
@@ -13,9 +13,12 @@ class TutorAdsController < ApplicationController
   end
 
   def index
-	  @tutor_ads = TutorAd.all
-  end
-
+	  if params[:query].present?
+		  @tutor_ads = TutorAd.search(params[:query])
+	  else 
+	  	  @tutor_ads = TutorAd.all 
+	  end
+  end 
   def show
 	  @tutor_ad= TutorAd.find(params[:id])
   end

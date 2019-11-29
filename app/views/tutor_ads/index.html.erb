@@ -1,7 +1,16 @@
 <h1>List Of All Tutor Ads</h1>
-
+<!-- <<<<<<< HEAD
+ -->
 <table class="table">
-	<tr>
+=======
+<%= form_tag(tutor_ads_path, method: "get") do%>
+	<%= label_tag(:query,"Search For:")%>
+	<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
+	<%= submit_tag("Search")%>
+<%end%>
+<table>
+<!-- >>>>>>> d0e256b7098e5902c927f0e43cb92d0955a9b181
+ -->	<tr>
 		<th>Title</th>
 		<th>Offering/Wanted</th>
 		<th>Description</th>

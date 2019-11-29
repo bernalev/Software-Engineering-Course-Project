@@ -21,7 +21,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+#for dynamic carousels, bootstrap substitution
+gem 'swiper-rails'
 # for user authentication
 gem 'devise'
 # for user authentication with stated provider
@@ -29,6 +30,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
 gem 'bootstrap-sass'
+
+gem 'pg_search'
 
 # for setting environment variables
 gem 'figaro'
