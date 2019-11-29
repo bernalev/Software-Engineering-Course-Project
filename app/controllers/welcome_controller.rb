@@ -4,22 +4,24 @@ class WelcomeController < ApplicationController
   def index
   	@schools = School.all
   	@schools_count = @schools.length
-  	if (@schools_count > 11)
-  		@schools = @schools[0..10]
+  	if (@schools_count >= 10)
+  		@schools = @schools[0..9]
   	end
-=begin
-  	@notes = Note.where(course_instance.course: current_user.courses).order("created_at").reverse_order
-	@notes_count = @notes.length
-  	if (@notes_count > 11)
-  		@notes = @notes[0..10]
-  	end  
 
-<h2> Browse recent notes from your courses </h2>
-<% @notes.each do |note| %>
-  <div> <%= link_to note.title, note_path(note, course_instance_id: note.course_instance.id) %> (created <%= note.created_at.to_date %>)</div>
-<% end %>
-	
-=end
+    @groups = Group.all
+    @groups_count = @groups.length
+    if (@groups_count >= 10)
+      @groups = @groups[0..9]
+    end
+
+    @tutor_ads = TutorAd.all
+    @tutor_ads_count = @tutor_ads.length
+    if (@tutor_ads_count >= 10)
+      @tutor_ads = @tutor_ads[0..9]
+    end
+
+    @colors = ["#4444ff", "#44ff44", "#ff4444"]
+
   	@activities = PublicActivity::Activity.order("created_at desc").limit(7)
   end
 end

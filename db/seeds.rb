@@ -86,7 +86,7 @@ notes = Note.create(notes_array)
 tutor_ads_array = Array.new(num_tutor_ads)
 for i in 0..tutor_ads_array.length
 	tutor_ads_array[i] = 	{
-		title: "#{courses[Faker::Number.between(from: 0, to: num_courses-1)].course_name} Course", 
+		title: "#{Faker::Educator.subject} Tutor", 
 		ad_type: Faker::Number.between(from: 0, to: 1), 
 		description: "As a #{Faker::Job.title}, I have great #{Faker::Job.key_skill}. #{Faker::Quote.matz}", 
 		rate: Faker::Number.between(from: 0, to: 50),

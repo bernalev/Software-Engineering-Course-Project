@@ -88,6 +88,7 @@
 
     <hr class="my-4">
 
+    <h2> Browse Schools </h2>
     <!--Carousel Wrapper-->
     <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
 
@@ -115,7 +116,7 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "city/city#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
@@ -128,7 +129,7 @@
 
             <div class="col-md-4 clearfix d-none d-md-block">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "city/city#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
@@ -141,7 +142,7 @@
 
             <div class="col-md-4 clearfix d-none d-md-block">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "city/city#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
@@ -170,24 +171,190 @@
       </a>
      </div>
     <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all schools (#{@schools_count})", schools_path() %></p>
+
+    <h2> Browse Groups </h2>
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+      </ol>
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <% img_count = 0 %>
+        <% @groups.each do |group| %>
+        <% if ((img_count < 9) and (img_count %3 ==0)) %>
+            <% if (img_count == 0) %>
+                <div class="carousel-item active">
+            <% else  %>
+                <div class="carousel-item">
+            <% end %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <% source = "abstract/abstract#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "abstract/abstract#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "abstract/abstract#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+        <% end %>
+        <!--/.First slide-->
+
+       </div>
+      <!--/.Slides-->
+      <a class="carousel-control-prev" href="#multi-item-example" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#multi-item-example" data-slide="next" role="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+     </div>
+    <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all groups (#{@groups_count})", groups_path() %></p>
+
+    <h2> Browse Tutors </h2>
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+        <li data-target="#multi-item-example" data-slide-to="1"></li>
+        <li data-target="#multi-item-example" data-slide-to="2"></li>
+      </ol>
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <% img_count = 0 %>
+        <% @tutor_ads.each do |tutor_ad| %>
+        <% if ((img_count < 9) and (img_count %3 ==0)) %>
+            <% if (img_count == 0) %>
+                <div class="carousel-item active">
+            <% else  %>
+                <div class="carousel-item">
+            <% end %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+        <% end %>
+        <!--/.First slide-->
+
+       </div>
+      <!--/.Slides-->
+      <a class="carousel-control-prev" href="#multi-item-example" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#multi-item-example" data-slide="next" role="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+     </div>
+    <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all tutors (#{@tutor_ads_count})", tutor_ads_path() %></p>
+
 
    </div>
 </div>
 
-<p class="text-center">  <%= link_to "View all schools (#{@schools_count})", schools_path() %></p>
 
-<h2> Coming soon: Browse by Subject </h2>
+
+<h2> Coming soon: Browse Your School by Subject </h2>
 
 <% Course.DEPTS.each do |department| %>
   <div> <%= department %></div>        
         
 <% end %>
-
-
-
-<h2> Browse All Groups </h2>
-<h2> Browse All Tutors </h2>
-
 
 for debugging:
     <p> View <%= link_to 'schools', schools_path() %> </p>
