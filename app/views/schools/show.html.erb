@@ -14,14 +14,14 @@
     <tr>
       <td><%= link_to course.course_code, course_path(course) %></td>
       <td><%= course.course_name %></td>
-      <td><%= link_to "Add Course", user_path(current_user, add_course: course.id), method: :patch %></td>
+      <% if current_user.courses.include?(course) %>
+        <td> <%= link_to "View My Courses", root_path %> </td>
+      <% else %>
+        <td><%= link_to "Add Course", user_path(current_user, add_course: course.id), method: :patch %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
-
-<% if @msg != "" %>
-  <p><strong><%= @msg %></strong></p>
-<% end %>
 
 <%= link_to "Return to My Course List", welcome_index_path() %>
 

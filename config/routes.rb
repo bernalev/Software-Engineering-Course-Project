@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'sites/privacy_policy'
   get 'sites/terms_of_service'
   get 'sites/faq'
+  get 'sites/contact_us'
+  post 'sites/contact_us/create'
 
   resources :courses, :schools, :users, :notes, :course_instances, :tutor_ads, :groups
   resources :course_instances do 

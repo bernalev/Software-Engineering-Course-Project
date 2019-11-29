@@ -12,6 +12,7 @@ num_courses = 30
 num_notes = 120
 num_course_instances = 60
 num_groups = 10
+num_tutor_ads = 10
 
 schools_array = Array.new(num_schools)
 for i in 0..schools_array.length
@@ -80,3 +81,17 @@ for i in 0..notes_array.length
 	}
 end
 notes = Note.create(notes_array)
+
+
+tutor_ads_array = Array.new(num_tutor_ads)
+for i in 0..tutor_ads_array.length
+	tutor_ads_array[i] = 	{
+		title: "#{courses[Faker::Number.between(from: 0, to: num_courses-1)].course_name} Course", 
+		ad_type: Faker::Number.between(from: 0, to: 1), 
+		description: "As a #{Faker::Job.title}, I have great #{Faker::Job.key_skill}. #{Faker::Quote.matz}", 
+		rate: Faker::Number.between(from: 0, to: 50),
+		user: users[Faker::Number.between(from: 0, to: num_users-1)]
+	}
+end
+tutor_ads = TutorAd.create(tutor_ads_array)
+      

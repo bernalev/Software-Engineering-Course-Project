@@ -16,11 +16,18 @@
     </div>
   </header>
 <% else %>
+
 <header class="masthead">
     <div class="container h-100">
       <div class="row h-100">
         <div class="col-lg-7 my-auto">
           <div class="header-content mx-auto">
+  <h2>Recent Notes</h2>
+  <% @activities.each do |activity| %>
+  	<div>
+		<%= render_activity activity %>
+  	</div>
+  <%end%>
   <h2>My Courses</h2>
 
   <% if (current_user.courses.size == 0) %>
@@ -57,6 +64,10 @@
     </div>
   </div>
 </header>
+=======
+  <p> <%= link_to 'Add courses', schools_path() %> </p>
+
+>>>>>>> 45a7c90b0fd461642f9abd54f9ea980016214901
   <br>
   <hr>
       
@@ -164,7 +175,11 @@
         
 <% end %>
 
-Coming soon: browse recent notes from your courses
+
+
+<h2> Browse All Groups </h2>
+<h2> Browse All Tutors </h2>
+
 
 for debugging:
     <p> View <%= link_to 'schools', schools_path() %> </p>
