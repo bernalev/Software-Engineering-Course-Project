@@ -1,31 +1,68 @@
-<h1>List Of All Tutor Ads</h1>
-<!-- <<<<<<< HEAD
- -->
-<table class="table">
-=======
-<%= form_tag(tutor_ads_path, method: "get") do%>
-	<%= label_tag(:query,"Search For:")%>
-	<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
-	<%= submit_tag("Search")%>
-<%end%>
-<table>
-<!-- >>>>>>> d0e256b7098e5902c927f0e43cb92d0955a9b181
- -->	<tr>
-		<th>Title</th>
-		<th>Offering/Wanted</th>
-		<th>Description</th>
-		<th>Hourly Rate</th>
-		<th></th>
-	</tr>
-	<% @tutor_ads.each do |tutor_ad| %>
-		<tr>
-			<td><%= tutor_ad.title %></td>
-			<td><%= tutor_ad.ad_type %></td>
-			<td><%= tutor_ad.description %></td>
-			<td><%= tutor_ad.rate %></td>
-			<td><%= link_to "View", tutor_ad_path(tutor_ad) %></td>
-		</tr>
-	<%end%>
-</table>
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+          	<div class="container">
+              <div class="row">
+            	<div class="col">
+				<h1>List Of All Tutor Ads</h1>
+
+				<table class="table" id="myTable">
+
+				<%= form_tag(tutor_ads_path, method: "get") do%>
+					<%= label_tag(:query,"Search For:")%>
+					<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
+					<%= submit_tag("Search")%>
+				<%end%>
+				<table class="table table-light">
+					<thead class="thead-dark">
+ 						<tr>
+							<th>Title</th>
+							<th>Offering/Wanted</th>
+							<th>Description</th>
+							<th>Hourly Rate</th>
+							<th>Hourly Rate</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% @tutor_ads.each do |tutor_ad| %>
+						<tr>
+							<td><%= tutor_ad.title %></td>
+							<td><%= tutor_ad.ad_type %></td>
+							<td><%= tutor_ad.description %></td>
+							<td><%= tutor_ad.rate %></td>
+							<td><%= link_to "View", tutor_ad_path(tutor_ad) %></td>
+						</tr>
+					<%end%>
+					</tbody>
+				</table>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
+        </div>
+      </div>
+    </div>
+  </header>
 
 <%= link_to "Post to tutoring ads", new_tutor_ad_path %>
+
+<script>
+	console.log( jQuery.fn.dataTable );
+$(document).ready(function(){
+    $('#myTable').dataTable();
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>
