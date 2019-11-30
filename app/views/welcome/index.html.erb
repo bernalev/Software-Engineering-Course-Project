@@ -4,86 +4,92 @@
       <div class="row h-100">
         <div class="col-lg-7 my-auto">
           <div class="header-content mx-auto">
-            
-            <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1>
-              Login for access to notes, tutors and studdy groups for your courses: 
-              <%= link_to "Sign up", new_user_registration_path %> |
-              <%= link_to "Login", new_user_session_path %>
+
+            <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1> Login for access to notes, tutors and studdy groups for your courses:
+            <%=link_to "Sign up", new_user_registration_path %> |
+              <%=link_to "Login", new_user_session_path %>
 
           </div>
         </div>
       </div>
     </div>
   </header>
-<% else %>
+  <% else %>
 
-<header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
-            <div class="container">
-              <div class="row">
-            <div class="col">
-                <h2>Recent Notes</h2>
-                <% @activities.each do |activity| %>
-  	              <div class="text-center" id="rendered_activity">
-		              <%# render_activity(activity, :layout => "layouts/activity_wrapper") %> 
-                   <%= render_activity activity %>
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h2>Recent Notes</h2>
+                    <% @activities.each do |activity| %>
+                      <div class="text-center" id="rendered_activity">
+                        <%# render_activity(activity, :layout=> "layouts/activity_wrapper") %>
+                          <%=render_activity activity %>
 
-  	              </div>
-                <%end%>
+                      </div>
+                      <%end%>
+                  </div>
+
+                  <div class="col">
+                    <h2>My Courses</h2>
+
+                    <% if (current_user.courses.size==0 ) %>
+                      No courses!
+                      <% else %>
+                        <table class="table table-light">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Course Code</th>
+                              <th colspan="2" scope="colgroup">School</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% current_user.courses.each do |course| %>
+                              <tr scope="row">
+                                <td>
+                                  <%=link_to course.course_code, course_path(course) %>
+                                </td>
+                                <td>
+                                  <%=course.school.school_name %>
+                                </td>
+                                <td>
+                                  <%=link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%>
+                                </td>
+                              </tr>
+                              <% end %>
+                          </tbody>
+                        </table>
+
+                        <%=link_to '<button type="button" class="btn btn-light">Add courses</button>'.html_safe, schools_path() %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
             </div>
 
-            <div class="col">
-              <h2>My Courses</h2>
 
-              <% if (current_user.courses.size == 0) %>
-  	           No courses!
-              <% else %>
-                <table class="table table-light">
-                <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Course Code</th>
-                  <th colspan="2" scope="colgroup">School</th>
-                </tr>
-                </thead>
-                <tbody>
-                  <% current_user.courses.each do |course| %>
-                    <tr scope="row">
-                      <td><%= link_to course.course_code, course_path(course) %></td>
-                      <td><%= course.school.school_name %></td>
-                      <td><%= link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%> </td>
-                    </tr>
-                    <% end %>
-                </tbody>
-                </table>
-               
-              <%= link_to '<button type="button" class="btn btn-light">Add courses</button>'.html_safe, schools_path() %> 
-              </div> 
-              </div>
-              </div>         
-  <% end %>
-</div>
-  
+            <% end %>
+              <% if @msg !="" %>
+                <p><strong> <%= @msg %> </strong>
+                </p>
+                <% end %>
+          </div>
+        </div>
+      </div>
+      </div>
+    </header>
+    <br>
+    <hr>
 
-<% end %>
-  <% if @msg != "" %>
-    <p><strong> <%= @msg %> </strong></p>
-  <% end %>
-</div>
-    </div>
-    </div>
-  </div>
-</header>
-  <br>
-  <hr>
-      
-  <div class="container my-4">
+    <div class="container my-4">
 
-    <p class="font-weight-bold">Wow wouldn't you love to see some awesome schools? Some awesome schools you might want some study notes for? Cuz I bet you do, take a look!</p>
+      <p class="font-weight-bold">Wow wouldn't you love to see some awesome schools? Some awesome schools you might want some study notes for? Cuz I bet you do, take a look!</p>
 
-    <p><strong>More cool text here to make us look proffesional af and hey why not a link <a href="https://burgerking.ca/"
+      <p><strong>More cool text here to make us look proffesional af and hey why not a link <a href="https://burgerking.ca/"
           target="_blank">Random link</a>.</p>
 
     <hr class="my-4">
@@ -120,7 +126,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
                   <p class="card-text">
                     <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
                   </p>
@@ -134,7 +140,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
                   <p class="card-text">
                     <p class="card-text">
                     <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
@@ -150,7 +156,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
                   <p class="card-text">
                     <p class="card-text">
                     <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
@@ -212,7 +218,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -225,7 +231,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -238,7 +244,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(group) %></h4>
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -297,7 +303,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
                   <p class="card-text">
                     <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
                   </p>
@@ -311,7 +317,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
                   <p class="card-text">
                     <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
                   </p>
@@ -325,7 +331,7 @@
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
                   <p class="card-text">
                     <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
                   </p>
@@ -373,4 +379,3 @@ for debugging:
     <p> View <%= link_to 'courses', courses_path() %> </p>
     <p> View <%= link_to 'groups', groups_path() %> </p>
     <p> View <%= link_to 'tutor ads', tutor_ads_path() %></p>
-
