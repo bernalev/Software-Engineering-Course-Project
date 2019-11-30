@@ -121,8 +121,9 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
                 </div>
               </div>
             </div>
@@ -134,8 +135,11 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
+                  </p>
                 </div>
               </div>
             </div>
@@ -147,8 +151,11 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
+                  </p>
                 </div>
               </div>
             </div>
@@ -291,8 +298,9 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
                 </div>
               </div>
             </div>
@@ -304,8 +312,9 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
                 </div>
               </div>
             </div>
@@ -317,8 +326,9 @@
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
                   <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(tutor_ad) %></h4>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
                 </div>
               </div>
             </div>
