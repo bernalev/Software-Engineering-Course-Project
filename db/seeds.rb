@@ -89,7 +89,7 @@ for i in 0..tutor_ads_array.length
 		title: "#{Faker::Educator.subject} Tutor", 
 		ad_type: Faker::Number.between(from: 0, to: 1), 
 		description: "As a #{Faker::Job.title}, I have great #{Faker::Job.key_skill}. #{Faker::Quote.matz}", 
-		rate: Faker::Number.between(from: 0, to: 50),
+		hour_rate: Faker::Number.between(from: 0, to: 50),
 		user: users[Faker::Number.between(from: 0, to: num_users-1)]
 	}
 end

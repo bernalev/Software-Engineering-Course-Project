@@ -5,7 +5,7 @@ class CreateTutorAds < ActiveRecord::Migration[6.0]
       t.string :title
       t.integer :ad_type
       t.text :description
-      t.float :rate
+      t.float :hour_rate
 
       t.timestamps
     end
