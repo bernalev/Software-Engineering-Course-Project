@@ -2,12 +2,14 @@ class User < ApplicationRecord
   has_many :notes
   has_many :groups
   has_many :tutor_ads
+  has_many :ratings
   has_and_belongs_to_many :courses
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
+
 
   def self.from_omniauth(auth)
   	# try to find existing user by provider and uid

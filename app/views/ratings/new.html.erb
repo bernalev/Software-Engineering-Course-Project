@@ -1,6 +1,6 @@
-<h1>NEW</h1>
+<h1>Add a review</h1>
 
-<p><%= @note.course_instance.course.course_code %></p>
+<h2><%= @note.title %></h2>
 
 <%= form_with(model: [ @note, @note.ratings.build ], local: true) do |form| %>
     <p>
