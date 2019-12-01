@@ -2,17 +2,22 @@
 
 
 <%= form_with scope: :group, url: groups_path, local: true do |form| %>
-  <p>
-    <%= form.label :name%><br>
-    <%= form.text_field :name%>
-  </p>
- 
-  <!-- <p>
-    <%= form.label :Course %><br>
-    <%= form.text_area :text %>
-  </p> -->
- 
-  <p>
-    <%= form.submit %>
-  </p>
+    <% if current_user.courses.length == 0 %>
+    <p>You must be registered in a course to sign up to a group!</p>
+    <%= link_to "Add a course", schools_path %>
+  <% else %>
+    <p>
+      <%= form.label :name%><br>
+      <%= form.text_field :name%>
+    </p>
+
+    <p>
+      <%= form.label :course %> <br>
+      <%= form.collection_select(:course_id, current_user.courses, :id, :course_code) %>
+    </p>
+   
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
 <% end %>

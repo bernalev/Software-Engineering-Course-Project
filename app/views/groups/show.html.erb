@@ -1,7 +1,39 @@
-<p>
-  <strong>Title:</strong>
-  <%= @group.name %>
-</p>
- 
+
+<h2><%= @group.name %> Group</h2>
+<h3>Course Code: <%= @group.course.course_code %></h3>
+
+<h4>Users </h4>
+
+
+<h4> Message Board </h4>
+	<% @messages.each do |msg| %>
+		<div> 
+			<%= "#{msg.user.first_name} #{msg.user.last_name}" %>:
+		    <strong> <%= msg.title %> </strong>
+		    <%= msg.text %>
+		    <%= msg.created_at %>		
+		</div>
+	<% end %>
+
+<h4> Add Message </h4>
+<%= form_with scope: :message, url: messages_path, local: true do |form| %>
+    <p>
+      <%= form.label :title%><br>
+      <%= form.text_field :title%>
+    </p>
+
+    <p>
+      <%= form.label :text %> <br>
+      <%= form.text_field :text %>
+    </p>
+   	
+   	<%= form.hidden_field :user_id, :value => current_user.id %>
+   	<%= form.hidden_field :group_id, :value => @group.id %>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>
+
 <%= link_to 'Add another group', new_group_path() %>
 <%= link_to 'Group list', groups_path() %>
