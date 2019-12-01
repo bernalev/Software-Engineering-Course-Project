@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'sites/contact_us'
   post 'sites/contact_us/create'
 
-  resources :courses, :schools, :users, :notes, :course_instances, :tutor_ads, :groups
+  resources :courses, :schools, :users, :notes, :course_instances, :tutor_ads, :groups, :messages
   resources :course_instances do 
   	resources :notes
   end

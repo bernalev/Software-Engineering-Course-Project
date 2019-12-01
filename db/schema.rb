@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_010846) do
+ActiveRecord::Schema.define(version: 2019_12_01_142943) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,10 +79,26 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.integer "course_instance_id", null: false
+    t.integer "course_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_instance_id"], name: "index_groups_on_course_instance_id"
+    t.index ["course_id"], name: "index_groups_on_course_id"
+  end
+
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -101,15 +117,6 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
     t.string "city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "student_groups", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["group_id"], name: "index_student_groups_on_group_id"
-    t.index ["user_id"], name: "index_student_groups_on_user_id"
   end
 
   create_table "tutor_ads", force: :cascade do |t|
@@ -148,7 +155,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "course_instances", "courses"
   add_foreign_key "courses", "schools"
-  add_foreign_key "groups", "course_instances"
+  add_foreign_key "groups", "courses"
   add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "users"
   add_foreign_key "tutor_ads", "users"

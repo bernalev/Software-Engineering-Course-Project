@@ -67,7 +67,7 @@ groups_array = Array.new(num_groups)
 for i in 0..groups_array.length
 	groups_array[i] = {
 		name: Faker::Name.name,
-		course_instance: course_instances[Faker::Number.between(from: 0, to: num_course_instances-1)]
+		course: courses[Faker::Number.between(from: 0, to: num_courses-1)]
 	}
 end
 groups = Group.create(groups_array)
