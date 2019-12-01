@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~>2.6.4'
 
+gem "slim-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use sqlite3 as the database for Active Record
@@ -33,7 +34,8 @@ gem 'bootstrap-sass'
 
 gem 'pg_search'
 gem 'public_activity'
-
+gem 'jquery-rails'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 # for setting environment variables
 gem 'figaro'
 

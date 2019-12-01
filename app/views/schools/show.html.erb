@@ -2,26 +2,38 @@
   <strong><%= @school.school_name %></strong>
 </h1>
 
-<h2>Courses</h2>
+<h2>Courses by Department</h2>
 
-<table>
-  <tr>
-    <th>Course Code</th>
-    <th>Course Name</th>
-  </tr>
- 
-  <% @school.courses.each do |course| %>
-    <tr>
-      <td><%= link_to course.course_code, course_path(course) %></td>
-      <td><%= course.course_name %></td>
-      <% if current_user.courses.include?(course) %>
-        <td> <%= link_to "View My Courses", root_path %> </td>
-      <% else %>
-        <td><%= link_to "Add Course", user_path(current_user, add_course: course.id), method: :patch %></td>
+<% course_dept = {} %>
+<% Course.DEPTS.each do |department| %>
+  <% course_dept[department] = [] %>
+<% end %>
+<% @school.courses.each do |course| %>
+  <% course_dept[course.department].push(course) %>
+<% end %>
+
+<% Course.DEPTS.each do |department| %>
+  <% if course_dept[department].length != 0 %>
+    <h3> <%= department %></h3>        
+
+    <table>
+      <tr>
+        <th>Course Code</th>
+        <th>Course Name</th>
+      </tr>
+     
+      <% course_dept[department].each do |course| %>
+        <tr>
+          <td><%= link_to course.course_code, course_path(course) %></td>
+          <td><%= course.course_name %></td>
+          <% if current_user.courses.include?(course) %>
+            <td> <%= link_to "View My Courses", root_path %> </td>
+          <% else %>
+            <td><%= link_to "Add Course", user_path(current_user, add_course: course.id), method: :patch %></td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
+    </table>
   <% end %>
-</table>
-
-<%= link_to "Return to My Course List", welcome_index_path() %>
+<% end %>
 

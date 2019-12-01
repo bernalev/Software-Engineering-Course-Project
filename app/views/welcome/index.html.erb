@@ -4,89 +4,105 @@
       <div class="row h-100">
         <div class="col-lg-7 my-auto">
           <div class="header-content mx-auto">
-            
-            <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1>
-              Login for access to notes, tutors and studdy groups for your courses: 
-              <%= link_to "Sign up", new_user_registration_path %> |
-              <%= link_to "Login", new_user_session_path %>
+
+            <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1> Login for access to notes, tutors and studdy groups for your courses:
+            <%=link_to "Sign up", new_user_registration_path %> |
+              <%=link_to "Login", new_user_session_path %>
 
           </div>
         </div>
       </div>
     </div>
   </header>
-<% else %>
-
-<header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100">
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
-  <h2>Recent Notes</h2>
-  <% @activities.each do |activity| %>
-  	<div>
-		<%= render_activity activity %>
-  	</div>
-  <%end%>
-  <h2>My Courses</h2>
-
-  <% if (current_user.courses.size == 0) %>
-  	No courses!
   <% else %>
-    <table class="table table-light">
-      <thead class="thead-dark">
-      <tr>
-        <th scope="col">Course Code</th>
-        <th colspan="2" scope="colgroup">School</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% current_user.courses.each do |course| %>
-        <tr scope="row">
-          <td><%= link_to course.course_code, course_path(course) %></td>
-          <td><%= course.school.school_name %></td>
-          <td><%= link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%> </td>
-        </tr>
-      <% end %>
-    </tbody>
-    </table>
-  <% end %>
 
-  
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <h2>Recent Notes</h2>
+                    <% @activities.each do |activity| %>
+                      <div class="text-center" id="rendered_activity">
+                        <%# render_activity(activity, :layout=> "layouts/activity_wrapper") %>
+                          <%=render_activity activity %>
 
-<% end %>
-  <% if @msg != "" %>
-    <p><strong> <%= @msg %> </strong></p>
-  <% end %>
-  <%= link_to '<button type="button" class="btn btn-light">Add courses</button>'.html_safe, schools_path() %>
-</div>
-    </div>
-    </div>
-  </div>
-</header>
+                      </div>
+                      <%end%>
+                  </div>
 
-  <p> <%= link_to 'Add courses', schools_path() %> </p>
+                  <div class="col">
+                    <h2>My Courses</h2>
 
-  <br>
-  <hr>
-      
-  <div class="container my-4">
+                    <% if (current_user.courses.size==0 ) %>
+                      No courses!
+                      <% else %>
+                        <table class="table table-light">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">Course Code</th>
+                              <th colspan="2" scope="colgroup">School</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% current_user.courses.each do |course| %>
+                              <tr scope="row">
+                                <td>
+                                  <%=link_to course.course_code, course_path(course) %>
+                                </td>
+                                <td>
+                                  <%=course.school.school_name %>
+                                </td>
+                                <td>
+                                  <%=link_to "Remove Course", user_path(current_user, rm_course: course.id), method: :patch%>
+                                </td>
+                              </tr>
+                              <% end %>
+                          </tbody>
+                        </table>
 
-    <p class="font-weight-bold">Wow wouldn't you love to see some awesome schools? Some awesome schools you might want some study notes for? Cuz I bet you do, take a look!</p>
+                        <%=link_to '<button type="button" class="btn btn-light">Add courses</button>'.html_safe, schools_path() %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
 
-    <p><strong>More cool text here to make us look proffesional af and hey why not a link <a href="https://burgerking.ca/"
+
+            <% end %>
+              <% if @msg !="" %>
+                <p><strong> <%= @msg %> </strong>
+                </p>
+                <% end %>
+          </div>
+        </div>
+      </div>
+      </div>
+    </header>
+    <br>
+    <hr>
+
+    <div class="container my-4">
+
+      <p class="font-weight-bold">Wow wouldn't you love to see some awesome schools? Some awesome schools you might want some study notes for? Cuz I bet you do, take a look!</p>
+
+      <p><strong>More cool text here to make us look proffesional af and hey why not a link <a href="https://burgerking.ca/"
           target="_blank">Random link</a>.</p>
 
     <hr class="my-4">
 
+    <h2> Browse Schools </h2>
     <!--Carousel Wrapper-->
-    <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
+    <div id="schools-carousel" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
 
       <!--Indicators-->
       <ol class="carousel-indicators">
-        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-        <li data-target="#multi-item-example" data-slide-to="1"></li>
-        <li data-target="#multi-item-example" data-slide-to="2"></li>
+        <li data-target="#schools-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#schools-carousel" data-slide-to="1"></li>
+        <li data-target="#schools-carousel" data-slide-to="2"></li>
       </ol>
       <!--/.Indicators-->
 
@@ -106,11 +122,103 @@
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "city/city#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
+                  <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "city/city#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
+                  <p class="card-text">
+                    <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "city/city#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(@schools[img_count]) %></h4>
+                  <p class="card-text">
+                    <p class="card-text">
+                    <%= "#{@schools[img_count].city}, #{@schools[img_count].courses.length} #{@schools[img_count].courses.length == 1 ? 'course' : 'courses'}" %>
+                  </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+        <% end %>
+        <!--/.First slide-->
+
+       </div>
+      <!--/.Slides-->
+      <a class="carousel-control-prev" href="#schools-carousel" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#schools-carousel" data-slide="next" role="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+     </div>
+    <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all schools (#{@schools_count})", schools_path() %></p>
+
+    <h2> Browse Groups </h2>
+    <!--Carousel Wrapper-->
+    <div id="groups-carousel" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#groups-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#groups-carousel" data-slide-to="1"></li>
+        <li data-target="#groups-carousel" data-slide-to="2"></li>
+      </ol>
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <% img_count = 0 %>
+        <% @groups.each do |group| %>
+        <% if ((img_count < 9) and (img_count %3 ==0)) %>
+            <% if (img_count == 0) %>
+                <div class="carousel-item active">
+            <% else  %>
+                <div class="carousel-item">
+            <% end %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <% source = "abstract/abstract#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -119,11 +227,11 @@
 
             <div class="col-md-4 clearfix d-none d-md-block">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "abstract/abstract#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -132,11 +240,11 @@
 
             <div class="col-md-4 clearfix d-none d-md-block">
               <div class="card mb-2">
-                <% source = "http://lorempixel.com/400/200/city/#{img_count}" %>
+                <% source = "abstract/abstract#{img_count}.jpg" %>
                 <% img_count = img_count + 1 %>
                 <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= link_to @schools[img_count].school_name, school_path(skule) %></h4>
+                  <h4 class="card-title"><%= link_to @groups[img_count].name, group_path(@groups[img_count]) %></h4>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 </div>
@@ -151,34 +259,118 @@
 
        </div>
       <!--/.Slides-->
-      <a class="carousel-control-prev" href="#multi-item-example" data-slide="prev" role="button">
+      <a class="carousel-control-prev" href="#groups-carousel" data-slide="prev" role="button">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#multi-item-example" data-slide="next" role="button">
+      <a class="carousel-control-next" href="#groups-carousel" data-slide="next" role="button">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
      </div>
     <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all groups (#{@groups_count})", groups_path() %></p>
+
+    <h2> Browse Tutors </h2>
+    <!--Carousel Wrapper-->
+    <div id="tutor_ads-carousel" class="carousel slide carousel-multi-item" data-ride="carousel" data-interval="8000">
+
+      <!--Indicators-->
+      <ol class="carousel-indicators">
+        <li data-target="#tutor_ads-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#tutor_ads-carousel" data-slide-to="1"></li>
+        <li data-target="#tutor_ads-carousel" data-slide-to="2"></li>
+      </ol>
+      <!--/.Indicators-->
+
+      <!--Slides-->
+      <div class="carousel-inner" role="listbox">
+
+        <!--First slide-->
+        <% img_count = 0 %>
+        <% @tutor_ads.each do |tutor_ad| %>
+        <% if ((img_count < 9) and (img_count %3 ==0)) %>
+            <% if (img_count == 0) %>
+                <div class="carousel-item active">
+            <% else  %>
+                <div class="carousel-item">
+            <% end %>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 clearfix d-none d-md-block">
+              <div class="card mb-2">
+                <% source = "business/business#{img_count}.jpg" %>
+                <% img_count = img_count + 1 %>
+                <%= image_tag(source, :alt=>"rss feed", :class=>"card-img-top", :alt=>"Card image cap") %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= link_to @tutor_ads[img_count].title, tutor_ad_path(@tutor_ads[img_count]) %></h4>
+                  <p class="card-text">
+                    <%= @tutor_ads[img_count].description.length>90? "#{@tutor_ads[img_count].description[0..90]}..." : @tutor_ads[img_count].description %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% else %>
+        <% end %>
+        <% end %>
+        <!--/.First slide-->
+
+       </div>
+      <!--/.Slides-->
+      <a class="carousel-control-prev" href="#tutor_ads-carousel" data-slide="prev" role="button">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#tutor_ads-carousel" data-slide="next" role="button">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+     </div>
+    <!--/.Carousel Wrapper-->
+    <p class="text-center">  <%= link_to "View all tutors (#{@tutor_ads_count})", tutor_ads_path() %></p>
+
 
    </div>
 </div>
 
-<p class="text-center">  <%= link_to "View all schools (#{@schools_count})", schools_path() %></p>
 
-<h2> Coming soon: Browse by Subject </h2>
+
+<h2> Coming soon: Browse Your School by Subject </h2>
 
 <% Course.DEPTS.each do |department| %>
   <div> <%= department %></div>        
         
 <% end %>
-
-
-
-<h2> Browse All Groups </h2>
-<h2> Browse All Tutors </h2>
-
 
 for debugging:
     <p> View <%= link_to 'schools', schools_path() %> </p>
