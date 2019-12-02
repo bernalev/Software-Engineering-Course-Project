@@ -13,3 +13,7 @@
 <% end %>
 
 <p><%= link_to "return", course_instance_path(@course_instance) %></p>
+
+<p><%= link_to "add review", new_note_rating_path(@note)%></p>
+
+<p><%= link_to "view all reviews", note_ratings_path(@note)%></p>

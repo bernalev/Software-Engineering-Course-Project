@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-	has_many :student_groups
-	has_many :users, through: :student_groups
-	belongs_to :course_instance
+	has_many :messages
+	has_and_belongs_to_many :users
+	belongs_to :course
 end

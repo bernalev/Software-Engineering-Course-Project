@@ -15,8 +15,8 @@
 		<%= form.text_area :description %>
 	  </p>
 	  <p>
-	  	<%= form.label :rate, 'Cost (Hourly)' %>
-		<%= form.number_field :rate , step: 0.01%>
+	  	<%= form.label :hour_rate, 'Cost (Hourly)' %>
+		<%= form.number_field :hour_rate , step: 0.01%>
 	  </p>
 	  <p><%= form.submit 'Post' %></p>
   <% end %>

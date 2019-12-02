@@ -1,0 +1,18 @@
+<h1>Reviews of <%= @note.title %></h1>
+
+
+<table class = "table">
+  <tr>
+    <th>Score</th>
+    <th>Comment</th>
+  </tr>
+ 
+  <% @ratings.each do |rating| %>
+    <tr>
+      <td><%= rating.score %></td>
+      <td><%= rating.review %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "return to note", note_path(@note)%></p>

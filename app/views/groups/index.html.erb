@@ -3,14 +3,13 @@
 <table class="table">
   <tr>
     <th>Group Name</th>
-    <th>Course ID</th>
+    <th>Course Code</th>
   </tr>
  
   <% @groups.each do |group| %>
     <tr>
       <td><%= link_to group.name, group_path(group) %></td>
-      <td><%= group.course_instance.course.course_code%></td>
-      <td><a href ="">Join</a> </td>
+      <td><%= group.course.course_code%></td>
     </tr>
   <% end %>
   <tr>

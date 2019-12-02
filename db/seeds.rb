@@ -7,12 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 num_schools = 20
-num_users = 15
-num_courses = 30
-num_notes = 120
-num_course_instances = 60
-num_groups = 10
-num_tutor_ads = 10
+num_users = 30
+num_courses = 60
+num_notes = 200
+num_course_instances = 120
+num_groups = 15
+num_tutor_ads = 15
+num_messages = 40 
+
 
 schools_array = Array.new(num_schools)
 for i in 0..schools_array.length
@@ -62,20 +64,41 @@ for i in 0..course_instances_array.length
 end
 course_instances = CourseInstance.create(course_instances_array)
 
-#every course instance has a group associated
 groups_array = Array.new(num_groups)
 for i in 0..groups_array.length
 	groups_array[i] = {
-		name: Faker::Name.name,
-		course_instance: course_instances[Faker::Number.between(from: 0, to: num_course_instances-1)]
+		name: "#{Faker::Name.name} Group",
+		course: courses[Faker::Number.between(from: 0, to: num_courses-1)]
 	}
 end
 groups = Group.create(groups_array)
 
+# give groups users
+# give groups messages by those users
+messages_array = Array.new(num_messages)
+for i in 0..messages_array.length
+	j = i
+	if j > (num_users-1)
+		j = j % num_users
+	end
+	k = i
+	if k > (num_groups-1)
+		k = k % num_groups
+	end
+	messages_array[i] = {
+		title: Faker::Lorem.words(number: 2).join(" "),
+		text: Faker::Lorem.paragraph,
+		user: users[j],
+		group: groups[k]
+	}
+	groups[k].users << users[j]
+end
+messages = Message.create(messages_array)
+
 notes_array = Array.new(num_notes)
 for i in 0..notes_array.length
 	notes_array[i] = 	{
-		title: Faker::Book.title, body: Faker::Lorem.paragraphs, 
+		title: Faker::Book.title, body: Faker::Lorem.paragraphs.join(". "), 
 		user: users[Faker::Number.between(from: 0, to: num_users-1)], 
 		course_instance: course_instances[Faker::Number.between(from: 0, to: num_course_instances-1)]
 	}
@@ -89,7 +112,7 @@ for i in 0..tutor_ads_array.length
 		title: "#{Faker::Educator.subject} Tutor", 
 		ad_type: Faker::Number.between(from: 0, to: 1), 
 		description: "As a #{Faker::Job.title}, I have great #{Faker::Job.key_skill}. #{Faker::Quote.matz}", 
-		rate: Faker::Number.between(from: 0, to: 50),
+		hour_rate: Faker::Number.between(from: 0, to: 50),
 		user: users[Faker::Number.between(from: 0, to: num_users-1)]
 	}
 end

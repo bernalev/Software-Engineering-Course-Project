@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_29_010846) do
+ActiveRecord::Schema.define(version: 2019_12_01_142943) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,22 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
     t.index ["course_instance_id"], name: "index_groups_on_course_instance_id"
   end
 
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -94,6 +110,17 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["course_instance_id"], name: "index_notes_on_course_instance_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.float "score"
+    t.text "review"
+    t.integer "user_id", null: false
+    t.integer "note_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["note_id"], name: "index_ratings_on_note_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -151,5 +178,7 @@ ActiveRecord::Schema.define(version: 2019_11_29_010846) do
   add_foreign_key "groups", "course_instances"
   add_foreign_key "notes", "course_instances"
   add_foreign_key "notes", "users"
+  add_foreign_key "ratings", "notes"
+  add_foreign_key "ratings", "users"
   add_foreign_key "tutor_ads", "users"
 end

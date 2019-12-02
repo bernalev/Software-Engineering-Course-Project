@@ -18,6 +18,7 @@
   <tr>
     <th>Title</th>
     <th>Created By</th>
+    <th>Rating</th>
     <th>Delete</th>
   </tr>
  
@@ -25,6 +26,7 @@
     <tr>
       <td><%= link_to note.title, [note.course_instance, note], action: "show"  %></td>
       <td><%= "#{note.user.first_name} #{note.user.last_name}" %></td>
+      <td><%= note.ave_rating %></td>
       <% if note.user.id == current_user.id%>
         <td><%= link_to "Delete Note", [note.course_instance, note], 
                         method: :delete, 

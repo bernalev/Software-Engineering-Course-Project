@@ -24,7 +24,7 @@ class TutorAdsController < ApplicationController
   end
   private 
   def tutor_ad_params
- 	  params.require(:tutor_ad).permit(:title, :ad_type, :description, :rate)
+ 	  params.require(:tutor_ad).permit(:title, :ad_type, :description, :hour_rate)
   end
 
 end

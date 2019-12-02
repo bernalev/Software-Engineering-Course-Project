@@ -1,0 +1,18 @@
+<h1>Add a review</h1>
+
+<h2><%= @note.title %></h2>
+
+<%= form_with(model: [ @note, @note.ratings.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :rating %><br>
+      <%= form.number_field :score, :required => true, in: 1.0..5.0, step: 1.0%>
+    </p>
+    <p>
+      <%= form.label :comment %><br>
+      <%= form.text_area :review %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
