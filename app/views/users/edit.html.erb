@@ -1,45 +1,173 @@
 <header class="masthead">
     <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col my-auto ">
-          <div class="header-content mx-auto">
-            <div class="card text-center" style="width: 35rem;">
-              <article class="card-body">
-                <a href="javascript:history.back()" class ="float-right btn btn-outline-primary">Go Back</a>
-                <h4 class="card-title mb-4 mt-1 text-dark float-left" font color="black">Edit Profile</h4>
-                <hr>
- 
-            <%= form_with(model: @user, url: user_path, method: "patch", local: true) do |form| %>
- 
-            <% if @user.errors.any? %>
-            <div id="error_explanation">
-              <h2>
-                <%= pluralize(@user.errors.count, "error") %> prohibited
-                these changes from being saved:
-              </h2>
-              <ul>
-                <% @user.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
+      <div class="row flex-lg-nowrap text-dark">
+        <div class="col">
+          <div class="row" style="padding-top: 40px; ">
+            <div class="col mb-3" >
+              <div class="card" >
+          <div class="card-body" style="padding-top: 20px; ">
+            <div class="e-profile">
+              <div class="row">
+                 <div class="col-12 col-sm-auto mb-3">
+                  <div class="mx-auto" style="width: 140px;">
+                    <div class="d-flex justify-content-center align-items-center rounded outter" style="height: 140px; ">
+                      <% source = "general/defaultProfile.jpg" %>
+                      <%= image_tag(source, :class=>"image-circle") %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3" style="padding-left:60px;">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= @user.first_name %> <%= @user.last_name %></h4>
+                    <small><%= @user.email %></small>
+                    <div class="mt-2">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fa fa-fw fa-camera"></i>
+                        <span>Change Photo</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="text-center text-sm-right">
+                    <span class="badge badge-secondary">administrator</span>
+                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                  </div>
+                </div>
+              </div>
+              <ul class="nav nav-tabs">
+                <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
               </ul>
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                  <%= form_with(model: @user, url: user_path, method: "patch", local: true) do |form| %>
+ 
+                  <% if @user.errors.any? %>
+                    <div id="error_explanation">
+                    <h2>
+                      <%= pluralize(@user.errors.count, "error") %> prohibited
+                      these changes from being saved:
+                    </h2>
+                    <ul>
+                      <% @user.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                  </ul>
+                </div>
+                <% end %> 
+        
+                  <form class="form" novalidate="">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <%= form.label :first_name, class: 'text-dark' %><br>
+                              <%= form.text_field :first_name, :required => true, class: 'text-dark form-control'%>
+                            </div>
+                            
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <%= form.label :last_name, class: 'text-dark' %><br>
+                              <%= form.text_field :last_name, :required => true, class: 'text-dark form-control'%>
+                            </div>
+                            
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <%= form.label :Email, class: 'text-dark' %><br>
+                              <%= form.text_field :email, :required => true, class: 'text-dark form-control', :disabled => true %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12 col-sm-6 mb-3">
+                        <div class="mb-2"><b>Change Password</b></div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Current Password</label>
+                              <input class="form-control" type="password" placeholder="••••••">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>New Password</label>
+                              <input class="form-control" type="password" placeholder="••••••">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
+                              <input class="form-control" type="password" placeholder="••••••"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-5 offset-sm-1 mb-3">
+                        <div class="mb-2"><b>Keeping in Touch</b></div>
+                        <div class="row">
+                          <div class="col">
+                            <label>Email Notifications</label>
+                            <div class="custom-controls-stacked px-2">
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
+                                <label class="custom-control-label" for="notifications-blog">Blog posts</label>
+                              </div>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
+                                <label class="custom-control-label" for="notifications-news">Newsletter</label>
+                              </div>
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
+                                <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col d-flex justify-content-end">
+                        <%= form.submit 'Save Changes', :class => 'btn btn-primary' %>
+                      </div>
+                      <% end %>
+                    </div>
+                  </form>
+
+                </div>
+                 </div>
             </div>
-          <% end %>
- 
-          <div class="field text-dark">
-            <%= form.label :first_name, class: 'text-dark' %><br>
-            <%= form.text_field :first_name, :required => true, class: 'text-dark'%>
           </div>
- 
-          <div class="field text-dark">
-            <%= form.label :last_name, class: 'text-dark' %><br>
-            <%= form.text_field :last_name, :required => true, class: 'text-dark'%>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 mb-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="px-xl-3">
+              <button class="btn btn-block btn-secondary">
+                <i class="fa fa-sign-out"></i>
+                <span>Logout</span>
+              </button>
+            </div>
           </div>
- 
-          <p class="text-dark">
-            <%= form.submit %>
-          </p>
- 
-        <% end %>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title font-weight-bold">Support</h6>
+            <p class="card-text">Get fast, free help from our friendly assistants.</p>
+            <button type="button" class="btn btn-primary">Contact Us</button>
+          </div>
+        </div>
+      </div>
+    </div>
+          
          </article>
         </div>
         </div>
