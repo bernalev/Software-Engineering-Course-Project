@@ -9,12 +9,21 @@
     <ul class="navbar-nav nav-hover float-right test" >
           <% if user_signed_in? and current_user %>
           <% name = current_user.first_name %>
+          
           <li class="nav-item">
-            <%= link_to name, user_path(current_user),
+            <%= link_to 'Tutors ', tutor_ads_path,
             { :class=>"nav-link js-scroll-trigger" } %>
           </li>
           <li class="nav-item">
-            <%= link_to 'View Ads ', tutor_ads_path,
+            <%= link_to 'Groups ', groups_path,
+            { :class=>"nav-link js-scroll-trigger" } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'My Courses ', welcome_index_path,
+            { :class=>"nav-link js-scroll-trigger" } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "#{name} ", user_path(current_user),
             { :class=>"nav-link js-scroll-trigger" } %>
           </li>
           <li class="nav-item">

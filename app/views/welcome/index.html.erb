@@ -361,18 +361,3 @@
 </div>
 
 </section>
-
-<h2> Coming soon: Browse Your School by Subject </h2>
-
-<% Course.DEPTS.each do |department| %>
-  <div> <%= department %></div>        
-        
-<% end %>
-
-for debugging:
-    <p> View <%= link_to 'schools', schools_path() %> </p>
-    <p> View <%= link_to 'users', users_path() %> </p>
-    <p> View <%= link_to 'notes', notes_path() %> </p>
-    <p> View <%= link_to 'courses', courses_path() %> </p>
-    <p> View <%= link_to 'groups', groups_path() %> </p>
-    <p> View <%= link_to 'tutor ads', tutor_ads_path() %></p>
