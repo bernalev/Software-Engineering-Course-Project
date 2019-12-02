@@ -25,13 +25,13 @@
                 <div class="row">
                   <div class="col">
                     <h2>Recent Notes</h2>
-                    <% @activities.each do |activity| %>
-                      <div class="text-center" id="rendered_activity">
+                    <ul class="list-group text-center" id="rendered_activity">
+                    <% @activities.each do |activity| %>   
                         <%# render_activity(activity, :layout=> "layouts/activity_wrapper") %>
                           <%=render_activity activity %>
-
-                      </div>
                       <%end%>
+                        
+                      </ul>
                   </div>
 
                   <div class="col">
@@ -39,6 +39,8 @@
 
                     <% if (current_user.courses.size==0 ) %>
                       No courses!
+                      <br/>
+                      <%=link_to '<button type="button" class="btn btn-light">Add courses</button>'.html_safe, schools_path() %>
                       <% else %>
                         <table class="table table-light">
                           <thead class="thead-dark">
@@ -73,18 +75,13 @@
 
 
             <% end %>
-              <% if @msg !="" %>
-                <p><strong> <%= @msg %> </strong>
-                </p>
-                <% end %>
           </div>
         </div>
       </div>
       </div>
     </header>
-    <br>
-    <hr>
 
+<section class="carousels">
     <div class="container my-4">
 
       <p class="font-weight-bold">Wow wouldn't you love to see some awesome schools? Some awesome schools you might want some study notes for? Cuz I bet you do, take a look!</p>
@@ -363,7 +360,7 @@
    </div>
 </div>
 
-
+</section>
 
 <h2> Coming soon: Browse Your School by Subject </h2>
 

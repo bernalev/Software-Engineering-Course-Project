@@ -1,20 +1,35 @@
-<h1> User Profile </h1>
+<header class="masthead">
+  <div class="container">
+  <div class="row login_box">
+      <div class="col-md-12 col-xs-12" align="center">
+            <div class="line"><h3>USER PROFILE</h3></div>
+            
+            <% source = "general/defaultProfile.jpg" %>
+                
+            <div class="outter"><%= image_tag(source, :class=>"image-circle") %></div>  
+            <%= link_to '<button style="margin-top: 13px;"class="btn btn-primary" type="button">Edit Profile</button>'.html_safe, edit_user_path %> 
+            <h3><%= @user.first_name %>
+            <%= @user.last_name %></h3>
+            
+            <span>Admin</span>
 
-<table>
-  <tr>
-    <th>First Name</th>
-    <th><%= @user.first_name %></th>
-  </tr>
-  <tr>
-    <th>Last Name</th>
-    <th><%= @user.last_name %></th>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <th><%= @user.email %></th>
-  </tr>
-</table>
+      </div>
+        <div class="col-md-6 col-xs-6 follow line" align="center">
+            <h3>
+                 56 <br/> <span>Notes Posted</span>
+            </h3>
+        </div>
+        <div class="col-md-6 col-xs-6 follow line" align="center">
+            <h3>
+                 6 <br/> <span>Enrolled Courses</span>
+            </h3>
+        </div> 
+        <div style="width: 100%;" class="text-center">
+        <h5 class="text-center"><strong>Email:</strong> <%= @user.email %></h5>
+        <%= link_to '<button class="btn btn-primary" type="button">Change email or password</button>'.html_safe, edit_user_registration_path %> 
+        </div>      
+    </div>
+</div>
+</header>
 
-<%= link_to 'Edit profile', edit_user_path %>
-<br>
-<%= link_to 'Change email or password', edit_user_registration_path %>
+         

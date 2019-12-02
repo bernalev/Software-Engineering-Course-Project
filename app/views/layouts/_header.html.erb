@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="line-height: 50px;" id="mainNav">
+<nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="line-height: 50px;" >
   <div class = "container "> 
   <a class="navbar-brand " href="/">StudyBuddy</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,7 +6,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarResponsive ">
-    <ul class="navbar-nav nav-hover float-right" >
+    <ul class="navbar-nav nav-hover float-right test" >
           <% if user_signed_in? and current_user %>
           <% name = current_user.first_name %>
           <li class="nav-item">
@@ -20,14 +20,14 @@
           <li class="nav-item">
             <%= link_to(' Logout', destroy_user_session_path, method: :delete) %>
           </li>
-          <li class="my-auto">
-          <form class="form-inline float-right ">
-            <input type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
-            <button class="btn btn-light my-sm-0" type="submit">Search</button>            
-          </form>
-        </li>
-          </ul>
           
+          </ul>
+          <form class="form-inline float-right test" style="margin-top: 8px;">
+            <input type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary" type="submit" id="nav-search-icon">
+              <i class="fa fa-search"></i>
+            </button>            
+          </form>
           <% else %>
           <li class="nav-item">
             <%= link_to "Sign up ", new_user_registration_path,

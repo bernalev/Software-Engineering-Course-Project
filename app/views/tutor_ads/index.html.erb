@@ -7,52 +7,53 @@
               <div class="row">
             	<div class="col">
 				<h1>List Of All Tutor Ads</h1>
-
-				<table class="table" id="myTable">
-
-				<%= form_tag(tutor_ads_path, method: "get") do%>
-					<%= label_tag(:query,"Search For:")%>
-					<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
-					<%= submit_tag("Search")%>
-				<%end%>
-				<table class="table table-light">
+				<table class="table table-light table-striped" id="myTable">
 					<thead class="thead-dark">
  						<tr>
-							<th>Title</th>
-							<th>Offering/Wanted</th>
-							<th>Description</th>
-							<th>Hourly Rate</th>
-							<th>Hourly Rate</th>
+							<th class="text-center" data-sortable="true">Title</th>
+							<th class="text-center" data-sortable="true">Offering/Wanted</th>
+							<th class="text-center" data-sortable="false">Description</th>
+							<th class="text-center"data-sortable="true">Hourly Rate</th>
+							<th data-sortable="false"></th>
 						</tr>
 					</thead>
 					<tbody>
 					<% @tutor_ads.each do |tutor_ad| %>
 						<tr>
-							<td><%= tutor_ad.title %></td>
-							<td><%= tutor_ad.ad_type %></td>
-							<td><%= tutor_ad.description %></td>
-							<td><%= tutor_ad.rate %></td>
-							<td><%= link_to "View", tutor_ad_path(tutor_ad) %></td>
+							<td class="text-center text-dark" style="width: 120px;vertical-align: middle;"><%= tutor_ad.title %></td>
+							<td class="text-center text-dark" style="vertical-align: middle; text-transform: uppercase;"><%= tutor_ad.ad_type %></td>
+							<td class="text-dark"><%= tutor_ad.description %></td>
+							<td class="text-center text-dark" style="vertical-align: middle;"><%= tutor_ad.rate %></td>
+							<td class="text-center text-dark" style="vertical-align: middle; width: 60px;"><%= link_to "View", tutor_ad_path(tutor_ad) %></td>
 						</tr>
 					<%end%>
 					</tbody>
+					<%= link_to '<button type="button" class="btn btn-primary">Post to tutoring ads</button>'.html_safe, new_tutor_ad_path %>
 				</table>
+
+			    </div>
+			   </div>
+			  </div>
 			</div>
-			</div>
-			</div>
-			</div>
-			</div>
+		  </div>
         </div>
       </div>
     </div>
-  </header>
+</header>
+<%= form_tag(tutor_ads_path, method: "get") do%>
+					<%= label_tag(:query,"Search For:")%>
+					<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
+					<%= submit_tag("Search")%>
+				<%end%>
 
-<%= link_to "Post to tutoring ads", new_tutor_ad_path %>
 
 <script>
-	console.log( jQuery.fn.dataTable );
 $(document).ready(function(){
-    $('#myTable').dataTable();
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 5,
+        "bFilter": false
+    });
 });
 
 //window.onload = function() {
