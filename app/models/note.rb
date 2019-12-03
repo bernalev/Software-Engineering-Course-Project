@@ -14,7 +14,7 @@ class Note < ApplicationRecord
 			sum = sum + rating.score
 		end
 		if (size ==0)
-			return 0
+			return '-'
 		end 
 
 		return (sum /size).round(1)
