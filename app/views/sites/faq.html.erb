@@ -1,5 +1,43 @@
-<h2>Frequently Asked Questions</h2>
-<h3>Q: Why does you website look weird?</h3>
-<p>A: Because it's still under construction, kay </p>
-<h3>Q: What are questions that people would have about our site?</h3>
-<p>A: I don't know. Clearly. </p>
+<header class="masthead">
+	<div class="container">
+		<div class="row ">
+			<div class="card" style="margin-top: 60px; height: 700px; overflow: auto;" >
+				<div class="card-body">
+					<div class="col text-dark" align="center">
+						<h2>Frequently Asked Questions</h2>
+						<ul class="text-left">
+
+							<h3>Q: What services does StudyBuddy offer?</h3>
+							<p>
+								A: StudyBuddy is a site for note sharing, study group making and tutor searching.
+							</p>
+							<h3>Q: How can I change my email or other user variables?</h3>
+							<p>
+								A: Click on your name in the top right corner of the site and find all your attributes there for editing. 
+							</p>
+							<h3>Q: How do I find a tutor for a specific topic?</h3>
+							<p>
+								A: After clicking on the <%= link_to "Tutors", tutor_ads_path%> link, you should be able to sort the ads by any column, or to search for keywords via the searchbar. 
+							</p>
+							<h3>Q: What kind of notes can I add? </h3>
+							<p>
+								A: Text notes can be pasted in and posted to the corresponding course. Any other type of note may be uploaded as a file.
+							</p>
+							<h3>Q: Why can't I leave a group? </h3>
+							<p>
+								A: The site is still under development, and this among other features are coming on their way. 
+							</p>
+							<h3>Q: How come I've never heard of any of these universities? </h3>
+							<p>
+								A: The site is populated with a fake data generator. This is also why the notes are all lorem and why the tutor ads are ridiculous :)
+							</p>
+							<p> 
+								Still unsure? <%= link_to "Contact us!", "/sites/contact_us" %> 
+							</p>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
