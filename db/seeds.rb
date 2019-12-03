@@ -14,7 +14,7 @@ num_course_instances = 120
 num_groups = 15
 num_tutor_ads = 15
 num_messages = 40 
-
+num_ratings = 200
 
 schools_array = Array.new(num_schools)
 for i in 0..schools_array.length
@@ -105,6 +105,16 @@ for i in 0..notes_array.length
 end
 notes = Note.create(notes_array)
 
+ratings_array = Array.new(num_ratings)
+for i in 0..ratings_array.length
+	ratings_array[i] = {
+		score: Faker::Number.between(from: 1, to: 5),
+		review: Faker::Lorem.paragraphs.join(". "), 
+		user: users[Faker::Number.between(from: 0, to: num_users-1)], 
+		note: notes[Faker::Number.between(from: 0, to: num_notes-1)]
+	}
+end
+ratings = Rating.create(ratings_array)
 
 tutor_ads_array = Array.new(num_tutor_ads)
 for i in 0..tutor_ads_array.length
