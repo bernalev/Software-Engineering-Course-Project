@@ -1,52 +1,114 @@
-
-<h1><%= @group.name %> Group</h1>
-<h2>Course Code: <%= @group.course.course_code %></h2>
-
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col ">
+          
+<h1 class="text-center" style="padding-top: 30px;"><%= @group.name %>-<%= @group.course.course_code %></h1>
+<div class="row" style="padding-top: 30px;">
+<div class="col">
 <h3>Users </h3>
 <% if @group.users.length == 0 %> 
-	<p> No users! </p>
+	<h3> No users! </h3>
 <% else %>
-	<% @group.users.each do |usr| %>
-		<p> <%= "#{usr.first_name} #{usr.last_name}" %> </p>
-	<% end %>
+	<table class="table table-light table-striped" id="myTable">
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-center" data-sortable="true">Users</th>
+              <th class="text-center" data-sortable="false"></th>
+            </tr>
+          </thead>
+          <tbody>     
+          	<% @group.users.each do |usr| %>
+              <tr>
+              <td class="text-center text-dark" style="vertical-align: middle;"><%= "#{usr.first_name} #{usr.last_name}" %></td>
+              <td class="text-center text-dark" style="vertical-align: middle; text-transform: uppercase;"></td>
+            </tr>
+          <%end%>
+          </tbody>
+        </table>
 <% end %>
 
 <% if not @group.users.include? current_user %>
 	<%= link_to 'Join Group', group_path(@group), method: :patch %>
 <% end %>
-
+</div>
+<div class="col-1"></div>
+<div class="col" >
 <h3> Message Board </h3>
 <% if @messages.length == 0 %> 
 	<p> No messages! </p>
 <% else %>
+<ul class="list-group" id="overflow" style="padding-top: 7px;">
 	<% @messages.each do |msg| %>
-		<div> 
+		<li class="list-group-item text-dark"> 
 			<%= "#{msg.user.first_name} #{msg.user.last_name}" %>:
 		    <strong> <%= msg.title %> </strong>
 		    <%= msg.text %>
 		    <%= msg.created_at %>		
-		</div>
+		</li>
+		<li class="list-group-item text-dark"> 
+			<%= "#{msg.user.first_name} #{msg.user.last_name}" %>:
+		    <strong> <%= msg.title %> </strong>
+		    <%= msg.text %>
+		    <%= msg.created_at %>		
+		</li>
 	<% end %>
+	</ul>
 <% end %>
+
 
 <% if @group.users.include? current_user %>
 	<h3> Add Message </h3>
+	<div class="card" style="width: 300px;">
+	<div class="card-body" >
 	<%= form_with scope: :message, url: messages_path, local: true do |form| %>
-	    <p>
+	   <div class="form-group text-dark">
 	      <%= form.label :title%><br>
 	      <%= form.text_field :title%>
-	    </p>
-
-	    <p>
+	   </div>
+	    <div class="form-group text-dark">
 	      <%= form.label :text %> <br>
 	      <%= form.text_field :text %>
-	    </p>
+	    </div>
 	   	
 	   	<%= form.hidden_field :user_id, :value => current_user.id %>
 	   	<%= form.hidden_field :group_id, :value => @group.id %>
 
-	    <p>
-	      <%= form.submit %>
-	    </p>
+	    <div class="form-group text-dark">
+	    	<%= form.submit "Post", class: "btn btn-primary" %>
+	    </div>
+
 	<% end %>
 <% end %>
+</div>
+</div>
+</div>
+</div>
+      </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-content mx-auto">
+</header>
+
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 13,
+        "bFilter": false
+    });
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>
