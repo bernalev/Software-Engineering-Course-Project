@@ -1,10 +1,16 @@
-<h1>
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col" style="padding-top: 50px;">
+          
+<h1 class="text-center">
   <strong><%= @school.school_name %></strong>
 </h1>
 
 <h2>Courses by Department</h2>
 
 <% course_dept = {} %>
+<% count = 0 %>
 <% Course.DEPTS.each do |department| %>
   <% course_dept[department] = [] %>
 <% end %>
@@ -14,13 +20,21 @@
 
 <% Course.DEPTS.each do |department| %>
   <% if course_dept[department].length != 0 %>
-    <h3> <%= department %></h3>        
-
-    <table>
+  <% if count%3 == 0 %>
+    <div class="row">
+  <% end %>
+  <div class="col">
+    <h3 class="text-center"> <%= department %></h3>
+    <% count = count + 1 %>        
+    <% string = "myTable" + count.to_s %>
+    <table class="table table-light table-striped" id=<%= string %>>
+      <thead class="thead-dark">
       <tr>
-        <th>Course Code</th>
-        <th>Course Name</th>
+        <th class="text-center" data-sortable="true">Course Code</th>
+        <th class="text-center" data-sortable="true">Course Name</th>
+        <th class="text-center" data-sortable="false"></th>
       </tr>
+    </thead>
      
       <% course_dept[department].each do |course| %>
         <tr>
@@ -34,6 +48,42 @@
         </tr>
       <% end %>
     </table>
+    <% if count%3 == 0 %>
+    </div>
+  <% end %>
+</div>
   <% end %>
 <% end %>
 
+</div>
+        </div>
+      </div>
+    </div>
+    <div class="header-content mx-auto">
+</header>
+
+
+<script>
+$(document).ready(function(){
+  var i = 0;
+    while (i <= <%= count %>) {
+    $('#myTable'+ i).dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 5,
+        "bFilter": false
+    });
+    i++;
+  }
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>

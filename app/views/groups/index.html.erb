@@ -1,19 +1,60 @@
-<h1>All Groups</h1>
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <div class="container">
+              <div class="row">
+              <div class="col">
+        <h1>All Groups</h1>
+        <table class="table table-light table-striped" id="myTable">
+          <%= link_to '<button type="button" class="btn btn-primary">New Group</button>'.html_safe, new_group_path() %>
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-center" data-sortable="true">Group Name</th>
+              <th class="text-center" data-sortable="true">Course Code</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @groups.each do |group| %>            
+              <tr>
+              <td class="text-center text-dark" style="vertical-align: middle;"><%= link_to group.name, group_path(group) %></td>
+              <td class="text-center text-dark" style="vertical-align: middle; text-transform: uppercase;"><%= group.course.course_code%></td>
+            </tr>
+          <%end%>
+          </tbody>
+        </table>
 
-<table class="table">
-  <tr>
-    <th>Group Name</th>
-    <th>Course Code</th>
-  </tr>
- 
-  <% @groups.each do |group| %>
-    <tr>
-      <td><%= link_to group.name, group_path(group) %></td>
-      <td><%= group.course.course_code%></td>
-    </tr>
-  <% end %>
-  <tr>
-  	<td><%= link_to 'New Group', new_group_path() %></td>
-  	<td></td>
-  </tr>
-</table>
+          </div>
+         </div>
+        </div>
+      </div>
+      </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 13,
+        "bFilter": false
+    });
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>
+

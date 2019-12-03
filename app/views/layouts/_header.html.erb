@@ -1,15 +1,21 @@
-<nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" style="line-height: 50px;" >
-  <div class = "container "> 
-  <a class="navbar-brand " href="/">StudyBuddy</a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarResponsive ">
-    <ul class="navbar-nav nav-hover float-right test" >
+<nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top" id="nav" style="line-height: 50px;">
+    <div class="container" >
+      <a class="navbar-brand " href="/">StudyBuddy</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav nav-hover float-right test" id="nav-bar">
           <% if user_signed_in? and current_user %>
           <% name = current_user.first_name %>
-          
+          <li class="nav-item">
+            <form class="form-inline float-left test" style="margin-top: 8px; padding-right: 20px;">
+            <input type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary" type="submit" id="nav-search-icon">
+              <i class="fa fa-search" id="search-icon"></i>
+            </button>            
+          </form>
+          </li>
           <li class="nav-item">
             <%= link_to 'Tutors ', tutor_ads_path,
             { :class=>"nav-link js-scroll-trigger" } %>
@@ -31,12 +37,7 @@
           </li>
           
           </ul>
-          <form action="/tutor_ads" class="form-inline float-right test" style="margin-top: 8px;">
-            <input name="query" type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
-	    <button class="btn btn-secondary" type="submit" id="nav-search-icon">
-              <i class="fa fa-search"></i>
-            </button>            
-          </form>
+
           <% else %>
           <li class="nav-item">
             <%= link_to "Sign up ", new_user_registration_path,
@@ -48,9 +49,10 @@
           </li>
       </ul>
           <% end %>
-    
+      </div>
+    </div>
+  </nav>
 
-  </div>
-</div>
-</nav>
-       
+
+
+

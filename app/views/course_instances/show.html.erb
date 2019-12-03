@@ -1,3 +1,7 @@
+<header class="masthead">
+    <div class="container">
+      <div class="row h-100" align="center" style="padding-top: 90px; ">
+            <div class="col mb-3 " align="center" >
 <h1>
   <strong><%= @course_instance.course.school.school_name %></strong>
 </h1>
@@ -5,8 +9,9 @@
 <h2>
   <strong><%= @course_instance.course.course_code %>: <%= @course_instance.course.course_name %></strong> - <%= @course_instance.year %> <%= @course_instance.semester %>
 </h2>
-
-
+<div class="row">
+  <%= link_to '<button class="btn btn-primary" type="button">Back</button>'.html_safe, course_path(@course_instance.course) %>
+<div class="col">
 <h3>Notes</h3>
 
 <% if @course_instance.notes.empty? %>
@@ -14,14 +19,16 @@
 
 <% else %>
 
-<table>
+<table class="table table-light table-striped" id="myTable">
+  <thead class="thead-dark">
   <tr>
-    <th>Title</th>
-    <th>Created By</th>
-    <th>Rating</th>
-    <th>Delete</th>
+    <th class="text-center" data-sortable="true">Title</th>
+    <th class="text-center" data-sortable="true">Created By</th>
+    <th class="text-center" data-sortable="true">Rating</th>
+    <th class="text-center" data-sortable="true">Delete</th>
   </tr>
- 
+ </thead>
+ <tbody>
   <% @course_instance.notes.each do |note| %>
     <tr>
       <td><%= link_to note.title, [note.course_instance, note], action: "show"  %></td>
@@ -31,14 +38,21 @@
         <td><%= link_to "Delete Note", [note.course_instance, note], 
                         method: :delete, 
                         data: {confirm: "Are you sure?"} %></td>
+        <% else %>
+        <td>You can only delete notes you posted!</td>
       <% end %>
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 <% end %>
-
-<h3>Add a note</h3>
+</div>
+<div class="col">
+  <div class="card" id="course-instance-form">
+<div class ="card-body text-dark" >
+  <div>
+<h3>Add a Note</h3>
   <%= form_with(model: [ @course_instance, @course_instance.notes.build ], local: true) do |form| %>
     <p>
       <%= form.label :title %><br>
@@ -58,5 +72,33 @@
       <%= form.submit %>
     </p>
   <% end %>
+</div>
+</div>
+</div>
+</div>
+<div class="header-content mx-auto">
+      </div>
+      </div>
+    </header>
 
-<p><%= link_to "return", course_path(@course_instance.course) %></p>
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 8,
+        "bFilter": false
+    });
+});
+
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>

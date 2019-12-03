@@ -1,17 +1,64 @@
-<h1>All Schools</h1>
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <div class="container">
+              <div class="row">
+              <div class="col">
+        <h1>All Schools</h1>
+        <div class="d-inline-block">
+          <h4>School missing?</h4>
+        </div>
+          <div class="d-inline-block"> 
+          <%= link_to '<button type="button" class="btn btn-primary">Let us know.</button>'.html_safe, sites_contact_us_path %>
+        </div>
+        <table class="table table-light table-striped" id="myTable">
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-center" data-sortable="true">School Name</th>
+              <th class="text-center" data-sortable="true">City</th>
+            </tr>
+          </thead>
+          <tbody>
+              <% @schools.each do |school| %>            
+              <tr>
+              <td class="text-center text-dark" style="width: 120px;vertical-align: middle;"><%= link_to school.school_name, school_path(school) %></td>
+              <td class="text-center text-dark" style="vertical-align: middle; text-transform: uppercase;"><%= school.city %></td>
+            </tr>
+          <%end%>
+          </tbody>
+        </table>
 
-<table class = "table">
-  <tr>
-    <th>School Name</th>
-    <th>City</th>
-  </tr>
- 
-  <% @schools.each do |school| %>
-    <tr>
-      <td><%= link_to school.school_name, school_path(school) %></td>
-      <td><%= school.city %></td>
-    </tr>
-  <% end %>
-</table>
+          </div>
+         </div>
+        </div>
+      </div>
+      </div>
+        </div>
+      </div>
+    </div>
+</header>
 
-School missing? <%= link_to "Let us know.", sites_contact_us_path %>
+
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 8,
+        "bFilter": false
+    });
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>

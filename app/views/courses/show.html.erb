@@ -1,8 +1,8 @@
 <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center">
-        <div class="col my-auto ">
-          <div class="header-content mx-auto">
+    <div class="container h-100" align="center">
+      <div class="row h-100 " align="center" style="padding-top: 60px;">
+        <div class="col  ">
+          
             
               <h1>
   <strong><%= @course.school.school_name %></strong>
@@ -14,27 +14,52 @@
 
 <h3>Course instances</h2>
 
-<table>
+<table class="table table-light table-striped" id="myTable">
+  <thead class="thead-dark">
   <tr>
-    <th>Year</th>
-    <th>Semester</th>
-    <th>Professor</th>
-    <th>view</th>
+    <th class="text-center" data-sortable="true">Year</th>
+    <th class="text-center" data-sortable="true">Semester</th>
+    <th class="text-center" data-sortable="true">Professor</th>
+    <th class="text-center" data-sortable="false">view</th>
   </tr>
- 
+</thead>
+ <tbody>
   <% @course.course_instances.each do |instance| %>
     <tr>
-      <td><%= instance.year %></td>
-      <td><%= instance.semester %></td>
-      <td><%= instance.professor %></td>
-      <td><%= link_to 'Show', course_instance_path(instance) %></td>
+      <td class="text-center"><%= instance.year %></td>
+      <td class="text-center"><%= instance.semester %></td>
+      <td class="text-center"><%= instance.professor %></td>
+      <td class="text-center"><%= link_to 'Show', course_instance_path(instance) %></td>
 
     </tr>
   <% end %>
+  </tbody>
 </table>
 
 </div>
         </div>
       </div>
+      <div class="header-content mx-auto">
     </div>
 </header>
+
+<script>
+$(document).ready(function(){
+    $('#myTable').dataTable({
+        "bLengthChange": false,
+        "iDisplayLength": 8,
+        "bFilter": false
+    });
+});
+
+//window.onload = function() {
+  //  if (window.jQuery) {  
+        // jQuery is loaded  
+    //    alert("Yeah!");
+    //} else {
+        // jQuery is not loaded
+      //  alert("Doesn't Work");
+//    }
+//}
+
+</script>

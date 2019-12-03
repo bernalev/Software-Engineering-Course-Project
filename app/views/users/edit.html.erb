@@ -29,7 +29,7 @@
                   </div>
                   <div class="text-center text-sm-right">
                     <span class="badge badge-secondary">administrator</span>
-                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                    <div class="text-muted"><small>Joined 03 Dec 2019</small></div>
                   </div>
                 </div>
               </div>
@@ -38,7 +38,7 @@
               </ul>
               <div class="tab-content pt-3">
                 <div class="tab-pane active">
-                  <%= form_with(model: @user, url: user_path, method: "patch", local: true) do |form| %>
+                  <%= form_with(model: @user, url: user_path, method: "patch", local: true, id:"form1") do |form| %>
  
                   <% if @user.errors.any? %>
                     <div id="error_explanation">
@@ -70,15 +70,20 @@
                               <%= form.label :last_name, class: 'text-dark' %><br>
                               <%= form.text_field :last_name, :required => true, class: 'text-dark form-control'%>
                             </div>
-                            
                           </div>
+                          <% end %>
                         </div>
+                        <%= form_for(resource, as: resource_name, url: session_path(resource_name), id:"form2", html: { method: :put }) do |f| %>
+                        <%= render "devise/shared/error_messages", resource: resource %>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <%= form.label :Email, class: 'text-dark' %><br>
-                              <%= form.text_field :email, :required => true, class: 'text-dark form-control', :disabled => true %>
+                              <%= f.label :Email, class: 'text-dark' %>
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-dark form-control' %>
                             </div>
+                            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                            <% end %>
                           </div>
                         </div>
                       </div>
@@ -89,27 +94,32 @@
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Current Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
+                              <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                              <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "••••••", class: 'text-dark form-control' %>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>New Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
+                              <%= f.label :password %> <i> (leave blank if you don't want to change it)</i><br />
+                              <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control' %>
+                              <% if @minimum_password_length %>
+                                <br />
+                                <em><%= @minimum_password_length %> characters minimum</em>
+                              <% end %>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                              <input class="form-control" type="password" placeholder="••••••"></div>
+                              <%= f.label :password_confirmation %><br />
+                              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control' %>
                           </div>
                         </div>
                       </div>
+                      <% end %>
                       <div class="col-12 col-sm-5 offset-sm-1 mb-3">
                         <div class="mb-2"><b>Keeping in Touch</b></div>
                         <div class="row">
@@ -135,9 +145,9 @@
                     </div>
                     <div class="row">
                       <div class="col d-flex justify-content-end">
-                        <%= form.submit 'Save Changes', :class => 'btn btn-primary' %>
+                        <input type="button" class="btn btn-primary" value="Save Changes" onclick="submitForms()" />
                       </div>
-                      <% end %>
+                      
                     </div>
                   </form>
 
@@ -175,3 +185,10 @@
       </div>
     </div>
 </header>
+
+<script type="text/javascript">
+  submitForms = function(){
+    document.getElementById("form1").submit();
+    document.getElementById("form2").submit();
+}
+</script>
