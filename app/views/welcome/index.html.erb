@@ -2,13 +2,14 @@
   <header class="masthead">
     <div class="container h-100">
       <div class="row h-100">
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
+        <div class="col-lg-7 my-auto ">
+          <div class="col mx-auto">
 
             <h1>Welcome to StuddyBuddy, your aid in scholarly success.</h1> Login for access to notes, tutors and studdy groups for your courses:
-            <%=link_to "Sign up", new_user_registration_path %> |
-              <%=link_to "Login", new_user_session_path %>
-
+            <div class="inline">
+            <%=link_to "Sign up", new_user_registration_path, :class=>"btn btn-primary" %> 
+              <%=link_to "Login", new_user_session_path, :class=>"btn btn-primary" %>
+              </div>
           </div>
         </div>
       </div>
