@@ -29,7 +29,7 @@
                   </div>
                   <div class="text-center text-sm-right">
                     <span class="badge badge-secondary">administrator</span>
-                    <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
+                    <div class="text-muted"><small>Joined <%= current_user.created_at.to_date %></small></div>
                   </div>
                 </div>
               </div>
@@ -78,8 +78,8 @@
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <%= f.label :Email, class: 'text-dark' %>
-                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-dark form-control' %>
+                              <%= f.label :email, class: 'text-dark'  %>
+                              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-dark form-control', disabled:true, placeholder: current_user.email%>
                             </div>
                             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -95,7 +95,7 @@
                           <div class="col">
                             <div class="form-group">
                               <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-                              <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "••••••", class: 'text-dark form-control' %>
+                              <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "••••••", class: 'text-dark form-control', disabled: true %>
                             </div>
                           </div>
                         </div>
@@ -103,7 +103,7 @@
                           <div class="col">
                             <div class="form-group">
                               <%= f.label :password %> <i> (leave blank if you don't want to change it)</i><br />
-                              <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control' %>
+                              <%= f.password_field :password, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control', disabled:true %>
                               <% if @minimum_password_length %>
                                 <br />
                                 <em><%= @minimum_password_length %> characters minimum</em>
@@ -115,7 +115,7 @@
                           <div class="col">
                             <div class="form-group">
                               <%= f.label :password_confirmation %><br />
-                              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control' %>
+                              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••", class: 'text-dark form-control', disabled:true %>
                           </div>
                         </div>
                       </div>
@@ -123,7 +123,8 @@
                       
                     <div class="row">
                       <div class="col d-flex justify-content-end">
-                        <input type="button" style="width:154px;height: 35px;" class="btn btn-primary" value="Save Changes" onclick="submitForms()" />
+                        <%= link_to '<button class="btn btn-primary" type="button">Change email or password</button>'.html_safe, edit_user_registration_path %> 
+                        <input type="button" style="height: 35px; margin-left: 20px;" class="btn btn-primary" value="Save Name Changes" onclick="submitForms()" />
                       </div>
                       
                     </div>
