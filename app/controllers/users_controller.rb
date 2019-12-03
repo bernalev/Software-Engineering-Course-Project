@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @notes_count = Note.where("user_id = ? ", params[:id]).length
     
     if current_user.id != @user.id
       redirect_to root_path 
