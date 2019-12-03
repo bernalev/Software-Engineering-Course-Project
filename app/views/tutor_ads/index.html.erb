@@ -41,13 +41,6 @@
       </div>
     </div>
 </header>
-<%= form_tag(tutor_ads_path, method: "get") do%>
-					<%= label_tag(:query,"Search For:")%>
-					<%= text_field_tag(:query, "Chemistry Tutor, etc.") %>
-					<%= submit_tag("Search")%>
-				<%end%>
-
-
 <script>
 $(document).ready(function(){
     $('#myTable').dataTable({
