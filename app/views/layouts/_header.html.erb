@@ -9,8 +9,8 @@
           <% if user_signed_in? and current_user %>
           <% name = current_user.first_name %>
           <li class="nav-item">
-            <form class="form-inline float-left test" style="margin-top: 8px; padding-right: 20px;">
-            <input type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
+            <form action="/tutor_Ads" class="form-inline float-left test" style="margin-top: 8px; padding-right: 20px;">
+            <input name="query" type="search" class="form-control mr-sm-2 " placeholder="Search" aria-label="Search">
             <button class="btn btn-secondary" type="submit" id="nav-search-icon">
               <i class="fa fa-search" id="search-icon"></i>
             </button>            
