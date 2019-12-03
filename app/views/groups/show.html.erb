@@ -29,7 +29,7 @@
 <% end %>
 
 <% if not @group.users.include? current_user %>
-	<%= link_to 'Join Group', group_path(@group), method: :patch %>
+	<%= link_to 'Join Group', group_path(@group), method: :patch, :class=>"btn btn-primary" %>
 <% end %>
 </div>
 <div class="col-1"></div>
